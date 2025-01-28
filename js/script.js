@@ -235,6 +235,7 @@ let saludoInicial = prompt("Quisieras ver nuestro catalogo? (SI/NO)").toLowerCas
 
 let listaPrestamos = [];
 
+
 function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
     let numeroCliente = 0;
     if (dineroSolicitado <= 0){
@@ -280,7 +281,7 @@ function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
 
 confirm("Bienvenido a nuestra banca! Se encuentra en la sección de préstamos.");
 let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO)").toLowerCase();
-    if (consultaCliente = "si"){
+    if (consultaCliente === "si"){
         let confirmaPrestamo = true;
         let nombreCliente = prompt("Primero te vamos a solicitar que a continuación nos digas tu nombre y apellido").toLowerCase();
         let numeroIdentificacion = prompt("Segundo, te pediremos tu número de identificación nacional, sin puntos ni espacios").toLowerCase();
@@ -294,7 +295,7 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
     }
     else{
         let consultaClientePrestamo = prompt("¿Desea validar si ya cuenta con un prestamo en nuestra banca? (SI/NO)").toLowerCase();
-        if (consultaClientePrestamo = "si"){
+        if (consultaClientePrestamo === "si"){
             validoDocumento = prompt("Ingrese su número de documento:").toLowerCase();
             validoPass = prompt("Ingrese su contraseña:").toLowerCase();
             for (let i = 0; i > listaPrestamos.length; i++){
