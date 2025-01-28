@@ -232,7 +232,7 @@ let saludoInicial = prompt("Quisieras ver nuestro catalogo? (SI/NO)").toLowerCas
 
 
 /* Para entregar 1era entrega porque no me salió lo anterior, pero voy a ir por ahí */
-
+/*
 let listaPrestamos = [];
 
 
@@ -280,7 +280,7 @@ function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
                 }
         }
 }
-
+*/
 confirm("Bienvenido a nuestra banca! Se encuentra en la sección de préstamos.");
 let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO)").toLowerCase();
     if (consultaCliente === "si"){
@@ -290,10 +290,10 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
         let passPrestamo = prompt("Y por último te vamos a pedir que generes una contraseña para guardar tu información").toLowerCase();
         let dineroSolicitado = prompt("Ingrese el dinero a solicitar");
         let cantidadMesesPrestamo = prompt("Ingrese la cantidad de meses en la que desea devolver el dinero (en numeros)");
-        do{
+        /*do{
             return prestamoBancario();
             break;
-        }while(confirmaPrestamo)
+        }while(confirmaPrestamo)*/
     }
     else{
         let consultaClientePrestamo = prompt("¿Desea validar si ya cuenta con un prestamo en nuestra banca? (SI/NO)").toLowerCase();
