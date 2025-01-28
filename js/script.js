@@ -278,8 +278,8 @@ function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
         }
 }
 
-
-let consultaCliente = prompt("Bienvenido a nuestra banca! Se encuentra en la sección de préstamos aprobados. ¿Desea confirmar un prestamo con nosotros? (SI/NO)").toLowerCase();
+confirm("Bienvenido a nuestra banca! Se encuentra en la sección de préstamos.");
+let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO)").toLowerCase();
     if (consultaCliente = "si"){
         let confirmaPrestamo = true;
         let nombreCliente = prompt("Primero te vamos a solicitar que a continuación nos digas tu nombre y apellido").toLowerCase();
