@@ -260,6 +260,7 @@ function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
                     cantidadMesesADevolver: cantidadMesesPrestamo
                     }
                 listaPrestamos.push(cliente)
+                confirmaPrestamo = false;
                 }
             else{
                 let calcularInteres = plazoCuotasMeses * interesMensual;
@@ -275,6 +276,7 @@ function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
                     cantidadMesesADevolver: cantidadMesesPrestamo
                     }
                 listaPrestamos.push(cliente)
+                confirmaPrestamo = false;
                 }
         }
 }
