@@ -290,10 +290,8 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
         let passPrestamo = prompt("Y por último te vamos a pedir que generes una contraseña para guardar tu información").toLowerCase();
         let dineroSolicitado = prompt("Ingrese el dinero a solicitar");
         let cantidadMesesPrestamo = prompt("Ingrese la cantidad de meses en la que desea devolver el dinero (en numeros)");
-        /*do{
-            return prestamoBancario();
-            break;
-        }while(confirmaPrestamo)*/ 
+        
+        return prestamoBancario();
     }
     else{
         let consultaClientePrestamo = prompt("¿Desea validar si ya cuenta con un prestamo en nuestra banca? (SI/NO)").toLowerCase();
