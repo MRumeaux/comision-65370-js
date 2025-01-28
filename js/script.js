@@ -285,6 +285,8 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
         let nombreCliente = prompt("Primero te vamos a solicitar que a continuación nos digas tu nombre y apellido").toLowerCase();
         let numeroIdentificacion = prompt("Segundo, te pediremos tu número de identificación nacional, sin puntos ni espacios").toLowerCase();
         let passPrestamo = prompt("Y por último te vamos a pedir que generes una contraseña para guardar tu información").toLowerCase();
+        let dineroSolicitado = prompt("Ingrese el dinero a solicitar");
+        let cantidadMesesPrestamo = prompt("Ingrese la cantidad de meses en la que desea devolver el dinero (en numeros)");
         do{
             return prestamoBancario();
             break;
@@ -293,8 +295,8 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
     else{
         let consultaClientePrestamo = prompt("¿Desea validar si ya cuenta con un prestamo en nuestra banca? (SI/NO)").toLowerCase();
         if (consultaClientePrestamo = "si"){
-            validoDocumento = prompt("Ingrese su número de documento:");
-            validoPass = prompt("Ingrese su contraseña:");
+            validoDocumento = prompt("Ingrese su número de documento:").toLowerCase();
+            validoPass = prompt("Ingrese su contraseña:").toLowerCase();
             for (let i = 0; i > listaPrestamos.length; i++){
                 if (validoDocumento === listaPrestamos[i].nroDocumento && validoPass === listaPrestamos[i].passUser){
                     confirm(`Su número de cliente es ${listaPrestamos[i].nroCliente}. Solicitó un préstamo por $${listaPrestamos[i].prestamoTotal} a ser devuelto en ${listaPrestamos[i].cantidadMesesADevolver}.`);
