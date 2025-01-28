@@ -293,7 +293,7 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
         /*do{
             return prestamoBancario();
             break;
-        }while(confirmaPrestamo)*/
+        }while(confirmaPrestamo)*/ 
     }
     else{
         let consultaClientePrestamo = prompt("¿Desea validar si ya cuenta con un prestamo en nuestra banca? (SI/NO)").toLowerCase();
