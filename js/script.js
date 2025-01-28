@@ -232,7 +232,7 @@ let saludoInicial = prompt("Quisieras ver nuestro catalogo? (SI/NO)").toLowerCas
 
 
 /* Para entregar 1era entrega porque no me salió lo anterior, pero voy a ir por ahí */
-/*
+
 let listaPrestamos = [];
 
 
@@ -280,7 +280,7 @@ function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
                 }
         }
 }
-*/
+
 confirm("Bienvenido a nuestra banca! Se encuentra en la sección de préstamos.");
 let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO)").toLowerCase();
     if (consultaCliente === "si"){
