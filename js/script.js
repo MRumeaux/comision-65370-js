@@ -236,50 +236,7 @@ let saludoInicial = prompt("Quisieras ver nuestro catalogo? (SI/NO)").toLowerCas
 let listaPrestamos = [];
 
 
-function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
-    let numeroCliente = 0;
-    if (dineroSolicitado <= 0){
-        confirm("Ha ingresado un valor menor a 0, no se efectuó la adjudicación del préstamo.")
-    }else{
-        numeroCliente = i++;
-        let interesMensual = 1.5;
-        let prestamoSinInteres = parseInt(dineroSolicitado);
-        let plazoCuotasMeses = parseInt(cantidadMesesPrestamo)
-            if (plazoCuotasMeses > 12){
-                let interesMensual = 2.5;
-                let calcularInteres = plazoCuotasMeses * interesMensual;
-                let costoInteres = prestamoSinInteres + (prestamoSinInteres * calcularInteres / 100);
-                let valorTotalADevolver = dineroSolicitado + costoInteres;
-                let valorCuotaADevolver = valorTotalADevolver / plazoCuotasMeses;
-                alert("Usted solicitó $" + prestamoSinInteres + ", a ser devuelto en un plazo de " + plazoCuotasMeses + "meses. Esto nos arroja una tasa de interés de %" + calcularInteres + ", generando un total a reintegrar de $" + valorTotalADevolver + ". Las cuotas mensuales a devolver son de $" + valorCuotaADevolver);
-                const cliente = {
-                    nroCliente : numeroCliente,
-                    nroDocumento : numeroIdentificacion,
-                    passUser : passPrestamo,
-                    prestamoTotal : valorTotalADevolver,
-                    cantidadMesesADevolver: cantidadMesesPrestamo
-                    }
-                listaPrestamos.push(cliente)
-                confirmaPrestamo = false;
-                }
-            else{
-                let calcularInteres = plazoCuotasMeses * interesMensual;
-                let costoInteres = prestamoSinInteres + (prestamoSinInteres * calcularInteres / 100);
-                let valorTotalADevolver = dineroSolicitado + costoInteres;
-                let valorCuotaADevolver = valorTotalADevolver / plazoCuotasMeses;
-                alert("Usted solicitó $" + prestamoSinInteres + ", a ser devuelto en un plazo de " + plazoCuotasMeses + "meses. Esto nos arroja una tasa nominal de %" + calcularInteres + ", generando un total a reintegrar de $" + valorTotalADevolver + ". Las cuotas mensuales a devolver son de $" + valorCuotaADevolver);
-                const cliente = {
-                    nroCliente : numeroCliente,
-                    nroDocumento : numeroIdentificacion,
-                    passUser : passPrestamo,
-                    prestamoTotal : valorTotalADevolver,
-                    cantidadMesesADevolver: cantidadMesesPrestamo
-                    }
-                listaPrestamos.push(cliente)
-                confirmaPrestamo = false;
-                }
-        }
-}
+
 
 confirm("Bienvenido a nuestra banca! Se encuentra en la sección de préstamos.");
 let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO)").toLowerCase();
@@ -291,7 +248,52 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
         let dineroSolicitado = prompt("Ingrese el dinero a solicitar");
         let cantidadMesesPrestamo = prompt("Ingrese la cantidad de meses en la que desea devolver el dinero (en numeros)");
         
-        return prestamoBancario(dineroSolicitado, cantidadMesesPrestamo);
+        function prestamoBancario(dineroSolicitado, cantidadMesesPrestamo){
+            let numeroCliente = 0;
+            if (dineroSolicitado <= 0){
+                confirm("Ha ingresado un valor menor a 0, no se efectuó la adjudicación del préstamo.")
+            }else{
+                numeroCliente = i++;
+                let interesMensual = 1.5;
+                let prestamoSinInteres = parseInt(dineroSolicitado);
+                let plazoCuotasMeses = parseInt(cantidadMesesPrestamo)
+                    if (plazoCuotasMeses > 12){
+                        let interesMensual = 2.5;
+                        let calcularInteres = plazoCuotasMeses * interesMensual;
+                        let costoInteres = prestamoSinInteres + (prestamoSinInteres * calcularInteres / 100);
+                        let valorTotalADevolver = dineroSolicitado + costoInteres;
+                        let valorCuotaADevolver = valorTotalADevolver / plazoCuotasMeses;
+                        alert("Usted solicitó $" + prestamoSinInteres + ", a ser devuelto en un plazo de " + plazoCuotasMeses + "meses. Esto nos arroja una tasa de interés de %" + calcularInteres + ", generando un total a reintegrar de $" + valorTotalADevolver + ". Las cuotas mensuales a devolver son de $" + valorCuotaADevolver);
+                        const cliente = {
+                            nroCliente : numeroCliente,
+                            nroDocumento : numeroIdentificacion,
+                            passUser : passPrestamo,
+                            prestamoTotal : valorTotalADevolver,
+                            cantidadMesesADevolver: cantidadMesesPrestamo
+                            }
+                        listaPrestamos.push(cliente)
+                        confirmaPrestamo = false;
+                        }
+                    else{
+                        let calcularInteres = plazoCuotasMeses * interesMensual;
+                        let costoInteres = prestamoSinInteres + (prestamoSinInteres * calcularInteres / 100);
+                        let valorTotalADevolver = dineroSolicitado + costoInteres;
+                        let valorCuotaADevolver = valorTotalADevolver / plazoCuotasMeses;
+                        alert("Usted solicitó $" + prestamoSinInteres + ", a ser devuelto en un plazo de " + plazoCuotasMeses + "meses. Esto nos arroja una tasa nominal de %" + calcularInteres + ", generando un total a reintegrar de $" + valorTotalADevolver + ". Las cuotas mensuales a devolver son de $" + valorCuotaADevolver);
+                        const cliente = {
+                            nroCliente : numeroCliente,
+                            nroDocumento : numeroIdentificacion,
+                            passUser : passPrestamo,
+                            prestamoTotal : valorTotalADevolver,
+                            cantidadMesesADevolver: cantidadMesesPrestamo
+                            }
+                        listaPrestamos.push(cliente)
+                        confirmaPrestamo = false;
+                        }
+                }
+        }
+
+        return prestamoBancario();
     }
     else{
         let consultaClientePrestamo = prompt("¿Desea validar si ya cuenta con un prestamo en nuestra banca? (SI/NO)").toLowerCase();
