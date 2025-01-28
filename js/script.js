@@ -256,7 +256,7 @@ let consultaCliente =  prompt("¿Desea realizar un prestamo con nosotros? (SI/NO
                 numeroCliente = i++;
                 let interesMensual = 1.5;
                 let prestamoSinInteres = parseInt(dineroSolicitado);
-                let plazoCuotasMeses = parseInt(cantidadMesesPrestamo)
+                let plazoCuotasMeses = parseInt(cantidadMesesPrestamo) 
                     if (plazoCuotasMeses > 12){
                         let interesMensual = 2.5;
                         let calcularInteres = plazoCuotasMeses * interesMensual;
