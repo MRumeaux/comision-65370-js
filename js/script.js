@@ -14,33 +14,6 @@ function Articulo(id, titulo, genero, precio, descripcion, stock, imagenURL, aut
     this.destacado = destacado;
 };
 
-function Usuario(usuario, pass, nombre_completo, edad, email, direccion, telefono, historial_compras){
-    this.usuario = usuario;
-    this.pass = pass;
-    this.nombre_completo = nombre_completo;
-    this.edad = edad;
-    this.email = email;
-    this.direccion = direccion;
-    this.telefono = telefono;
-    this.historial_compras = historial_compras;
-};
-
-
-
-
-const carrito = [];
-
-let backUpCarrito = JSON.stringify(carrito)
-
-localStorage.setItem("carrito", backUpCarrito);
-
-function recuperar(){
-    const xxx = JSON.parse(localStorage.getItem("carrito"))
-};
-
-
-
-
 /* Lista articulos */
 
 let inventario = [
@@ -70,4 +43,77 @@ let inventario = [
 
 ];
 
-console.log(inventario);
+
+function Usuario(usuario, pass, nombre_completo, edad, email, direccion, telefono, historial_compras){
+    this.usuario = usuario;
+    this.pass = pass;
+    this.nombre_completo = nombre_completo;
+    this.edad = edad;
+    this.email = email;
+    this.direccion = direccion;
+    this.telefono = telefono;
+    this.historial_compras = historial_compras;
+};
+
+
+
+
+const carrito = [];
+
+
+const sumarArticulosACarrito = () => {
+    let seleccionArticulo = "";
+    const articuloSeleccionado = inventario.find (articulo => articulo.id === seleccionArticulo);
+    const articuloEnCarrito = carrito.some(articulo => articulo.id === seleccionArticulo);
+
+    if(articuloSeleccionado && !articuloEnCarrito){
+        const articuloCarrito = {
+            id: articuloSeleccionado.id,
+            titulo: articuloSeleccionado.titulo,
+            genero: articuloSeleccionado.genero,
+            precio: articuloSeleccionado.precio,
+            descripcion: articuloSeleccionado.descripcion,
+            cantidad: 1,
+            imagenURL: articuloSeleccionado.imagenURL,
+            autor: articuloSeleccionado.autor,
+            editorial: articuloSeleccionado.editorial,
+            yearPublished: articuloSeleccionado.yearPublished,
+            destacado: articuloSeleccionado.destacado,
+        }
+        carrito.push(articuloCarrito);
+    }
+    else if(articuloSeleccionado && articuloEnCarrito){
+        const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
+        carrito[posicionEnCarrito].cantidad++;
+    }
+    else{
+        alert("no encontré producto") /* modificar */
+    }
+
+    carrito.push(articuloSeleccionado);
+}
+
+
+if(carrito.length > 0){
+    const calculoPrecioCarrito = () => {
+        const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
+    };
+    const visualizarCarrito = () => {
+        const listadoCarrito = carrito.reduce((acumulaCarrito, artCarrito) => acumulaCarrito += `Titulo: ${artCarrito.titulo} - Cantidad: ${artCarrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}\n`);
+    };
+}
+else{
+    alert("Carrito vacío");
+}
+
+
+
+
+let backUpCarrito = JSON.stringify(carrito)
+
+localStorage.setItem("carrito", backUpCarrito);
+
+function recuperar(){
+    const xxx = JSON.parse(localStorage.getItem("carrito"))
+};
+
