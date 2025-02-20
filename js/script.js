@@ -60,6 +60,10 @@ function Usuario(usuario, pass, nombre_completo, edad, email, direccion, telefon
 
 const carrito = [];
 
+function copiarCarritoAlLocalStorage() {
+    let backUpCarrito = JSON.stringify(carrito);
+    localStorage.setItem("carrito", backUpCarrito);
+}
 
 const sumarArticulosACarrito = () => {
     let seleccionArticulo = "";
@@ -91,7 +95,9 @@ const sumarArticulosACarrito = () => {
     }
 
     carrito.push(articuloSeleccionado);
+    copiarCarritoAlLocalStorage();
 }
+
 
 
 if(carrito.length > 0){
@@ -107,13 +113,18 @@ else{
 }
 
 
-
-
-let backUpCarrito = JSON.stringify(carrito)
-
-localStorage.setItem("carrito", backUpCarrito);
-
-function recuperar(){
-    const xxx = JSON.parse(localStorage.getItem("carrito"))
+function recuperarCarritoDelLocal(){
+    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
 };
+
+function generarCompra(){
+    
+    localStorage.removeItem("carrito")
+}
+
+
+
+
+
+    
 
