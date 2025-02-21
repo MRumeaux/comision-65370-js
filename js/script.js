@@ -123,16 +123,13 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
 }
 
 
-if(carrito.length > 0){
+while(carrito.length > 0){
     const calculoPrecioCarrito = () => {
         const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
     };
     const visualizarCarrito = () => {
         const listadoCarrito = carrito.reduce((acumulaCarrito, artCarrito) => acumulaCarrito += `Titulo: ${artCarrito.titulo} - Cantidad: ${artCarrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}\n`);
     };
-}
-else{
-    alert("Carrito vacío");
 }
 
 function recuperarCarritoDelLocal(){
