@@ -70,8 +70,8 @@ for(const manga of inventario){
                             <h1>Titulo: ${manga.titulo}</h1>
                             <p>Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
-    contenedorInventario.appendChild(contenedor);
     contenedor.className = "preview-articulo";
+    contenedorInventario.appendChild(contenedor);
 
 }
 
