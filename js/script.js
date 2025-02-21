@@ -64,13 +64,13 @@ console.log(inventario)
 
 for(const manga of inventario){
 
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
+    let contenedorArticulo = document.createElement("div");
+    contenedorArticulo.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
                             <h1>Titulo: ${manga.titulo}</h1>
                             <p>Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
-    contenedor.className = "preview-articulo";
-    document.body.appendChild(contenedor);
+    contenedorArticulo.className = "preview-articulo";
+    document.body.appendChild(contenedorArticulo);
 
 }
 
@@ -139,6 +139,14 @@ function recuperarCarritoDelLocal(){
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
 };
 
+
+let contenedorCarrito = document.createElement("div");
+
+for (articuloEnCarrito of carrito){
+    contenedorCarrito.innerHTML = `<h2>${visualizarCarrito}</h2>`;
+}
+contenedorCarrito.className = "preview-articulo";
+document.body.appendChild(contenedorCarrito);
 
 
 console.log(carrito);
