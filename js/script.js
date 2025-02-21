@@ -75,12 +75,11 @@ for(const manga of inventario){
 
 const carrito = [];
 
-document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
-    botonCarrito.addEventListener("click", (eventoMapeoID) => {
-        let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
-        sumarArticulosACarrito(idSeleccionArticulo);
-    });
-});
+
+function copiarCarritoAlLocalStorage() {
+    let backUpCarrito = JSON.stringify(carrito);
+    localStorage.setItem("carrito", backUpCarrito);
+}
 
 function sumarArticulosACarrito() {
     const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
@@ -114,14 +113,16 @@ function sumarArticulosACarrito() {
     copiarCarritoAlLocalStorage();
 }
 
+document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
+    botonCarrito.addEventListener("click", (eventoMapeoID) => {
+        let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
+        sumarArticulosACarrito(idSeleccionArticulo);
+    });
+});
 
 
 
 
-function copiarCarritoAlLocalStorage() {
-    let backUpCarrito = JSON.stringify(carrito);
-    localStorage.setItem("carrito", backUpCarrito);
-}
 
 
 
