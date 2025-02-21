@@ -139,7 +139,7 @@ function recuperarCarritoDelLocal(){
 
 let contenedorCarrito = document.createElement("div");
 
-contenedorCarrito.innerHTML = `<h2>${visualizarCarrito}</h2>`;
+contenedorCarrito.innerHTML = `<h2>Sumo un slot</h2>`;
 
 document.body.appendChild(contenedorCarrito);
 
