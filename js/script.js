@@ -123,9 +123,6 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
 }
 
 
-
-
-
 if(carrito.length > 0){
     const calculoPrecioCarrito = () => {
         const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
@@ -142,12 +139,9 @@ function recuperarCarritoDelLocal(){
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
 };
 
-function generarCompra(){
-
-    localStorage.removeItem("carrito")
-}
 
 
+console.log(carrito);
 
 
 
@@ -186,4 +180,10 @@ for(const manga of inventario){
     document.body.appendChild(contenedor)
 
 }
+
+function generarCompra(){
+
+    localStorage.removeItem("carrito")
+}
+
 */
