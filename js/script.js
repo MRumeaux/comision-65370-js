@@ -78,11 +78,11 @@ const carrito = [];
 document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     botonCarrito.addEventListener("click", (eventoMapeoID) => {
         let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
-        sumarArticulosACarrito;
+        sumarArticulosACarrito(idSeleccionArticulo);
     });
 });
 
-const sumarArticulosACarrito = (idSeleccionArticulo) => {
+const sumarArticulosACarrito = () => {
     const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
