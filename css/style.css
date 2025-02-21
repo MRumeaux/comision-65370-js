@@ -1,9 +1,6 @@
-.contenedorFlex{
+.preview-articulo{
     display: flex;
     flex-wrap: wrap;
-}
-
-.preview-articulo{
     justify-content: space-between;
     align-items: center;
     text-align: center;
