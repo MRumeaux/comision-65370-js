@@ -43,6 +43,9 @@ let inventario = [
 
 ];
 
+
+const carrito = [];
+
 for(const manga of inventario){
 
     let contenedor = document.getElementById("vistaPreviaArtInventario");
@@ -53,6 +56,39 @@ for(const manga of inventario){
     document.body.appendChild(contenedor);
     contenedor.className = "preview-articulo";
 
+}
+
+const sumarArticulosACarrito = () => {
+    let seleccionArticulo = manga.id;
+    const articuloSeleccionado = inventario.find (articulo => articulo.id === seleccionArticulo);
+    const articuloEnCarrito = carrito.some(articulo => articulo.id === seleccionArticulo);
+
+    if(articuloSeleccionado && !articuloEnCarrito){
+        const articuloCarrito = {
+            id: articuloSeleccionado.id,
+            titulo: articuloSeleccionado.titulo,
+            genero: articuloSeleccionado.genero,
+            precio: articuloSeleccionado.precio,
+            descripcion: articuloSeleccionado.descripcion,
+            cantidad: 1,
+            imagenURL: articuloSeleccionado.imagenURL,
+            autor: articuloSeleccionado.autor,
+            editorial: articuloSeleccionado.editorial,
+            yearPublished: articuloSeleccionado.yearPublished,
+            destacado: articuloSeleccionado.destacado,
+        }
+        carrito.push(articuloCarrito);
+    }
+    else if(articuloSeleccionado && articuloEnCarrito){
+        const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
+        carrito[posicionEnCarrito].cantidad++;
+    }
+    else{
+        alert("no encontré producto") /* modificar */
+    }
+
+    carrito.push(articuloSeleccionado);
+    copiarCarritoAlLocalStorage();
 }
 
 let botonCarrito = document.getElementById("sumarAlCarrito");
@@ -91,45 +127,13 @@ function Usuario(usuario, pass, nombre_completo, edad, email, direccion, telefon
     this.historial_compras = historial_compras;
 };
 
-const carrito = [];
 
 function copiarCarritoAlLocalStorage() {
     let backUpCarrito = JSON.stringify(carrito);
     localStorage.setItem("carrito", backUpCarrito);
 }
 
-const sumarArticulosACarrito = () => {
-    let seleccionArticulo = manga.id;
-    const articuloSeleccionado = inventario.find (articulo => articulo.id === seleccionArticulo);
-    const articuloEnCarrito = carrito.some(articulo => articulo.id === seleccionArticulo);
 
-    if(articuloSeleccionado && !articuloEnCarrito){
-        const articuloCarrito = {
-            id: articuloSeleccionado.id,
-            titulo: articuloSeleccionado.titulo,
-            genero: articuloSeleccionado.genero,
-            precio: articuloSeleccionado.precio,
-            descripcion: articuloSeleccionado.descripcion,
-            cantidad: 1,
-            imagenURL: articuloSeleccionado.imagenURL,
-            autor: articuloSeleccionado.autor,
-            editorial: articuloSeleccionado.editorial,
-            yearPublished: articuloSeleccionado.yearPublished,
-            destacado: articuloSeleccionado.destacado,
-        }
-        carrito.push(articuloCarrito);
-    }
-    else if(articuloSeleccionado && articuloEnCarrito){
-        const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
-        carrito[posicionEnCarrito].cantidad++;
-    }
-    else{
-        alert("no encontré producto") /* modificar */
-    }
-
-    carrito.push(articuloSeleccionado);
-    copiarCarritoAlLocalStorage();
-}
 
 if(carrito.length > 0){
     const calculoPrecioCarrito = () => {
