@@ -81,7 +81,7 @@ function copiarCarritoAlLocalStorage() {
     localStorage.setItem("carrito", backUpCarrito);
 }
 
-function sumarArticulosACarrito() {
+const sumarArticulosACarrito = (idSeleccionArticulo) => {
     const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
@@ -116,7 +116,7 @@ function sumarArticulosACarrito() {
 document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     botonCarrito.addEventListener("click", (eventoMapeoID) => {
         let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
-        sumarArticulosACarrito(idSeleccionArticulo);
+        return sumarArticulosACarrito;
     });
 });
 
