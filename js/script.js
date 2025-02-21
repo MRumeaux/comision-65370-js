@@ -123,14 +123,12 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
 }
 
 
-while(carrito.length > 0){
-    const calculoPrecioCarrito = () => {
-        const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
-    };
-    const visualizarCarrito = () => {
-        const listadoCarrito = carrito.reduce((acumulaCarrito, artCarrito) => acumulaCarrito += `Titulo: ${artCarrito.titulo} - Cantidad: ${artCarrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}\n`);
-    };
-}
+const calculoPrecioCarrito = () => {
+    const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
+};
+const visualizarCarrito = () => {
+    const listadoCarrito = carrito.reduce((acumulaCarrito, artCarrito) => acumulaCarrito += `Titulo: ${artCarrito.titulo} - Cantidad: ${artCarrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}\n`,"");
+};
 
 function recuperarCarritoDelLocal(){
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
