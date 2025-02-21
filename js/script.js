@@ -115,6 +115,9 @@ document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     });
 });
 
+
+console.log(carrito);
+
 /*
 function verMas(){
 
