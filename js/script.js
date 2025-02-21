@@ -51,13 +51,15 @@ let listaArticulos = [
 ];
 /* Lista articulos */
 
-let inventario = [];
+let inventario = listaArticulos.map(articulo => new Articulo(...articulo));
 
+/*
 for(let i = 0; i < listaArticulos.length; i++){
     let recorrerInventario = listaArticulos[i];
     let articulo = new Articulo(...recorrerInventario)
     inventario.push(articulo);
-}
+}*/
+
 
 console.log(inventario)
 
