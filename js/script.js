@@ -48,17 +48,22 @@ for(const manga of inventario){
     let contenedor = document.getElementById("vistaPreviaArtInventario");
     contenedor.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
                             <h1>Titulo: ${manga.titulo}</h1>
-                            <p>Precio: ${manga.precio}</p>`;
+                            <p>Precio: ${manga.precio}</p>
+                            <button id="sumarAlCarrito">Sumar al carrito</button>`;
     document.body.appendChild(contenedor);
     contenedor.className = "preview-articulo";
 
 }
 
+let botonCarrito = document.getElementById("sumarAlCarrito");
+
+botonCarrito.addEventListener("click",sumarArticulosACarrito);
+
+/*
 function verMas(){
 
 }
 
-/*
 for(const manga of inventario){
 
     let contenedor = document.createElement("div");
@@ -94,7 +99,7 @@ function copiarCarritoAlLocalStorage() {
 }
 
 const sumarArticulosACarrito = () => {
-    let seleccionArticulo = "";
+    let seleccionArticulo = manga.id;
     const articuloSeleccionado = inventario.find (articulo => articulo.id === seleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === seleccionArticulo);
 
