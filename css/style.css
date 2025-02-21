@@ -1,7 +1,9 @@
 .preview-articulo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    justify-content: center;
     height: 180;
     width: 25%;
 }
