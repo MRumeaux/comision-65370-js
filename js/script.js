@@ -78,7 +78,6 @@ const carrito = [];
 document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     botonCarrito.addEventListener("click", (eventoMapeoID) => {
         let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
-        sumarArticulosACarrito(idSeleccionArticulo);
     });
 });
 
@@ -113,31 +112,6 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
     carrito.push(articuloSeleccionado);
     copiarCarritoAlLocalStorage();
 }
-
-
-
-
-console.log(carrito);
-
-/*
-function verMas(){
-
-}
-
-for(const manga of inventario){
-
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<h1>Titulo: ${manga.titulo}</h1>
-                            <img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
-                            <h2>Género: ${manga.genero}</h2>
-                            <p>Autor: ${manga.autor}</p>
-                            <p>Año de publicación: ${manga.yearPublished}</p>
-                            <h3>Editorial: ${manga.editorial}</h3>
-                            <p>Precio: ${manga.precio}</p>`;
-    document.body.appendChild(contenedor)
-
-}
-*/
 
 
 
@@ -177,3 +151,37 @@ function generarCompra(){
 
     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function verMas(){
+
+}
+
+for(const manga of inventario){
+
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<h1>Titulo: ${manga.titulo}</h1>
+                            <img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
+                            <h2>Género: ${manga.genero}</h2>
+                            <p>Autor: ${manga.autor}</p>
+                            <p>Año de publicación: ${manga.yearPublished}</p>
+                            <h3>Editorial: ${manga.editorial}</h3>
+                            <p>Precio: ${manga.precio}</p>`;
+    document.body.appendChild(contenedor)
+
+}
+*/
