@@ -61,6 +61,8 @@ for(let i = 0; i < listaArticulos.length; i++){
 
 console.log(inventario)
 
+const contenedorInventario = document.getElementById("contenedorFlex")
+
 for(const manga of inventario){
 
     let contenedor = document.createElement("div");
@@ -68,13 +70,12 @@ for(const manga of inventario){
                             <h1>Titulo: ${manga.titulo}</h1>
                             <p>Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
-    document.body.appendChild(contenedor);
+    contenedorInventario.appendChild(contenedor);
     contenedor.className = "preview-articulo";
 
 }
 
 const carrito = [];
-
 
 
 document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
