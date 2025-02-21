@@ -52,7 +52,7 @@ console.log(inventario)
 
 for(const manga of inventario){
 
-    let contenedor = document.getElementById("vistaPreviaArtInventario");
+    let contenedor = document.createElement("div");
     contenedor.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
                             <h1>Titulo: ${manga.titulo}</h1>
                             <p>Precio: ${manga.precio}</p>
