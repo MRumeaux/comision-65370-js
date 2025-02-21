@@ -1,5 +1,16 @@
 /* Se crean los principales objetos */
 
+function Usuario(usuario, pass, nombre_completo, edad, email, direccion, telefono, historial_compras){
+    this.usuario = usuario;
+    this.pass = pass;
+    this.nombre_completo = nombre_completo;
+    this.edad = edad;
+    this.email = email;
+    this.direccion = direccion;
+    this.telefono = telefono;
+    this.historial_compras = historial_compras;
+};
+
 function Articulo(id, titulo, genero, precio, descripcion, stock, imagenURL, autor, editorial, yearPublished, destacado){
     this.id = id;
     this.titulo = titulo;
@@ -56,7 +67,7 @@ for(const manga of inventario){
     contenedor.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}"
                             <h1>Titulo: ${manga.titulo}</h1>
                             <p>Precio: ${manga.precio}</p>
-                            <button id="sumarAlCarrito">Sumar al carrito</button>`;
+                            <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
     document.body.appendChild(contenedor);
     contenedor.className = "preview-articulo";
 
@@ -65,9 +76,8 @@ for(const manga of inventario){
 const carrito = [];
 
 const sumarArticulosACarrito = () => {
-    let seleccionArticulo = manga.id;
-    const articuloSeleccionado = inventario.find (articulo => articulo.id === seleccionArticulo);
-    const articuloEnCarrito = carrito.some(articulo => articulo.id === seleccionArticulo);
+    const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
+    const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
     if(articuloSeleccionado && !articuloEnCarrito){
         const articuloCarrito = {
@@ -97,9 +107,13 @@ const sumarArticulosACarrito = () => {
     copiarCarritoAlLocalStorage();
 }
 
-let botonCarrito = document.getElementById("sumarAlCarrito");
 
-botonCarrito.addEventListener("click",sumarArticulosACarrito);
+document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
+    botonCarrito.addEventListener("click", (eventoMapeoID) => {
+        let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
+        sumarArticulosACarrito(idSeleccionArticulo);
+    });
+});
 
 /*
 function verMas(){
@@ -122,16 +136,7 @@ for(const manga of inventario){
 */
 
 
-function Usuario(usuario, pass, nombre_completo, edad, email, direccion, telefono, historial_compras){
-    this.usuario = usuario;
-    this.pass = pass;
-    this.nombre_completo = nombre_completo;
-    this.edad = edad;
-    this.email = email;
-    this.direccion = direccion;
-    this.telefono = telefono;
-    this.historial_compras = historial_compras;
-};
+
 
 
 function copiarCarritoAlLocalStorage() {
