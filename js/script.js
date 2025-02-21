@@ -82,7 +82,7 @@ document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     });
 });
 
-const sumarArticulosACarrito = () => {
+function sumarArticulosACarrito() {
     const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
