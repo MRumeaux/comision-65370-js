@@ -1,0 +1,13 @@
+.preview-articulo{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 180;
+    width: 25%;
+}
+
+.preview-articulo img{
+    margin: 10px;
+    height: 100px;
+    width: auto;
+}
