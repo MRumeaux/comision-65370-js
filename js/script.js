@@ -141,10 +141,7 @@ function recuperarCarritoDelLocal(){
 
 
 let contenedorCarrito = document.createElement("div");
-
-for (articuloEnCarrito of carrito){
-    contenedorCarrito.innerHTML = `<h2>${visualizarCarrito}</h2>`;
-}
+contenedorCarrito.innerHTML = `<h2>${visualizarCarrito}</h2>`;
 contenedorCarrito.className = "preview-articulo";
 document.body.appendChild(contenedorCarrito);
 
