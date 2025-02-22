@@ -128,20 +128,25 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
 const calculoPrecioCarrito = () => {
     const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
 };
+/*
 const visualizarCarrito = () => {
     const listadoCarrito = carrito.reduce((acumulaCarrito, artCarrito) => acumulaCarrito += `Titulo: ${artCarrito.titulo} - Cantidad: ${artCarrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}\n`,"");
 };
-
+*/
 function recuperarCarritoDelLocal(){
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
 };
 
 
+let bienvenidaCarrito = document.createElement("p");
+bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
+document.body.appendChild(bienvenidaCarrito);
+
 let contenedorCarrito = document.createElement("div");
 
-contenedorCarrito.innerHTML = `<p>Este es su carrito actualmente:\n
-                                <h2>${visualizarCarrito()}</h2>`;
-
+for(articuloEnCarrito of carrito){
+    contenedorCarrito.innerHTML = `<p>Titulo: ${carrito.titulo} - Precio unitario: ${carrito.precio} - Cantidad seleccionada: ${carrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}</p>`;
+}
 document.body.appendChild(contenedorCarrito);
 
 
