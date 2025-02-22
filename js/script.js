@@ -124,7 +124,7 @@ document.body.appendChild(bienvenidaCarrito);
 
 for(articuloEnCarrito of carrito){
     let contenedorCarrito = document.createElement("div");
-    contenedorCarrito.innerHTML = `<p>Titulo: ${carrito.titulo} - Precio unitario: ${carrito.precio} - Cantidad seleccionada: ${carrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}</p>`;
+    contenedorCarrito.innerHTML = `<p>Titulo: ${carrito.titulo} - Precio unitario: ${carrito.precio} - Cantidad seleccionada: ${carrito.cantidad} - Subtotal: }</p>`;
     document.body.appendChild(contenedorCarrito);
 }
 
