@@ -123,10 +123,13 @@ bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al mom
 document.body.appendChild(bienvenidaCarrito);
 
 let contenedorCarrito = document.createElement("p");
-for(articuloEnCarrito of carrito){
-    contenedorCarrito.innerHTML = `Titulo: ${articuloEnCarrito.titulo} - Precio unitario: ${articuloEnCarrito.precio} - Cantidad seleccionada: ${articuloEnCarrito.cantidad} - Subtotal: \n`;
-}
 document.body.appendChild(contenedorCarrito);
+
+contenedorCarrito.innerHTML = "";
+for(articuloEnCarrito of carrito){
+    let sumarCarritoDom = `Titulo: ${articuloEnCarrito.titulo} - Precio unitario: ${articuloEnCarrito.precio} - Cantidad seleccionada: ${articuloEnCarrito.cantidad} - Subtotal: ${articuloEnCarrito.cantidad * articuloEnCarrito.precio} \n`;
+    contenedorCarrito.innerHTML += sumarCarritoDom;
+}
 
 console.log(carrito);
 
