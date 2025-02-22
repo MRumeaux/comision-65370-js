@@ -53,17 +53,6 @@ let listaArticulos = [
 
 let inventario = listaArticulos.map(articulo => new Articulo(...articulo));
 
-/*
-for(let i = 0; i < listaArticulos.length; i++){
-    let recorrerInventario = listaArticulos[i];
-    let articulo = new Articulo(...recorrerInventario)
-    inventario.push(articulo);
-}*/
-
-
-console.log(inventario)
-
-
 for(const manga of inventario){
 
     let contenedorArticulo = document.createElement("div");
@@ -78,7 +67,6 @@ for(const manga of inventario){
 
 const carrito = [];
 
-
 document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     botonCarrito.addEventListener("click", (eventoMapeoID) => {
         let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
@@ -90,7 +78,6 @@ function copiarCarritoAlLocalStorage() {
     let backUpCarrito = JSON.stringify(carrito);
     localStorage.setItem("carrito", backUpCarrito);
 }
-
 
 const sumarArticulosACarrito = (idSeleccionArticulo) => {
     const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
@@ -122,15 +109,10 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
     copiarCarritoAlLocalStorage();
 }
 
-
 const calculoPrecioCarrito = () => {
     const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
 };
-/*
-const visualizarCarrito = () => {
-    const listadoCarrito = carrito.reduce((acumulaCarrito, artCarrito) => acumulaCarrito += `Titulo: ${artCarrito.titulo} - Cantidad: ${artCarrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}\n`,"");
-};
-*/
+
 function recuperarCarritoDelLocal(){
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
 };
@@ -140,13 +122,11 @@ let bienvenidaCarrito = document.createElement("p");
 bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
 document.body.appendChild(bienvenidaCarrito);
 
-let contenedorCarrito = document.createElement("div");
-
 for(articuloEnCarrito of carrito){
+    let contenedorCarrito = document.createElement("div");
     contenedorCarrito.innerHTML = `<p>Titulo: ${carrito.titulo} - Precio unitario: ${carrito.precio} - Cantidad seleccionada: ${carrito.cantidad} - Subtotal: ${calculoPrecioCarrito()}</p>`;
+    document.body.appendChild(contenedorCarrito);
 }
-document.body.appendChild(contenedorCarrito);
-
 
 console.log(carrito);
 
