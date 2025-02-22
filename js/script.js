@@ -119,8 +119,6 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
     else{
         alert("no encontré producto") /* modificar */
     }
-
-    carrito.push(articuloSeleccionado);
     copiarCarritoAlLocalStorage();
 }
 
