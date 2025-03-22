@@ -2,7 +2,11 @@ body{
     margin: 0px;
 }
 
-
+.nav-container {
+    position: sticky;
+    z-index: 3;
+    top: 0;
+}
 
 /*
 
