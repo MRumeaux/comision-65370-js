@@ -33,7 +33,7 @@ body{
 /* Componentes banner*/
 
 .banner{
-    background-size: cover;
+    background-size: repeat;
     background-position: center;
     height: 100vh;
     background-image: url(../assets/para-fondo-wall.jpg);
