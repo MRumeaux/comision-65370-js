@@ -49,15 +49,9 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
         const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
         carrito[posicionEnCarrito].cantidad++;
     }
-    else{
-        alert("no encontré producto") /* modificar */
-    }
     copiarCarritoAlLocalStorage();
 }
 
-const calculoPrecioCarrito = () => {
-    const totalCarrito = carrito.reduce((acumulaPrecioCarrito, artCarrito) => acumulaPrecioCarrito += (artCarrito.cantidad * artCarrito.precio), 0);
-};
 
 function recuperarCarritoDelLocal(){
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
@@ -69,7 +63,7 @@ bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al mom
 document.body.appendChild(bienvenidaCarrito);
 
 let contenedorCarrito = document.createElement("p");
-document.body.appendChild(contenedorCarrito);
+    document.body.appendChild(contenedorCarrito);
 
 contenedorCarrito.innerHTML = "";
 for(articuloEnCarrito of carrito){

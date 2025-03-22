@@ -40,3 +40,9 @@ let listaArticulos = [
 /* Lista articulos */
 
 let inventario = listaArticulos.map(articulo => new Articulo(...articulo));
+
+let inventario = [
+    {
+        id
+    },
+]
