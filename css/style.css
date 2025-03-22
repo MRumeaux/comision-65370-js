@@ -25,7 +25,10 @@ body{
 }
 
 .nav-carrito{
+    justify-self: end;
+    margin-left: 20px;
     cursor: pointer;
+    font-size: 50px;
 }
 
 /* Componentes banner*/
@@ -38,7 +41,6 @@ body{
 }
 
 .banner-contenedor{
-    background-size: auto;
     text-align: center;
     padding: 15% 0;
 }
