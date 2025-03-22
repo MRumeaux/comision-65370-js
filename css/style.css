@@ -90,6 +90,27 @@ body{
 
 .preview-articulo img{
     margin: 10px;
-    height: 100px;
-    width: auto;
+    height: 250px;
+    width: 90%;
+}
+
+.precio-producto{
+    color: grey;
+    font-size: 22px;
+}
+
+.sumarAlCarrito{
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.sumarAlCarrito:hover{
+    opacity: 0.7;
 }
