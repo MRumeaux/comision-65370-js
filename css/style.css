@@ -91,7 +91,7 @@ body{
 .preview-articulo img{
     margin: 10px;
     height: 250px;
-    width: 90%;
+    width: auto;
 }
 
 .precio-producto{
