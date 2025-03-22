@@ -1,4 +1,4 @@
-
+const contenidoTienda = document.getElementById("contenidoTienda");
 
 
 for(const manga of inventario){
@@ -9,7 +9,7 @@ for(const manga of inventario){
                             <p>Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
     contenedorArticulo.className = "preview-articulo";
-    document.body.appendChild(contenedorArticulo);
+    contenidoTienda.appendChild(contenedorArticulo);
 
 }
 
