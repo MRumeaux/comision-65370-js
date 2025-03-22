@@ -38,12 +38,12 @@ body{
 }
 
 .banner-contenedor{
+    background-size: auto;
     text-align: center;
     padding: 15% 0;
 }
 
 .banner h1{
-    background-size: auto;
     margin: 0;
     color: white;
     background-color: black;
@@ -52,7 +52,6 @@ body{
 }
 
 .banner p {
-    background-size: auto;
     font-size: 30px;
     color: white;
     background-color: black;
