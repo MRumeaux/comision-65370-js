@@ -1,4 +1,6 @@
 
+
+
 for(const manga of inventario){
 
     let contenedorArticulo = document.createElement("div");
