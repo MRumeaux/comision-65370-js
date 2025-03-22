@@ -44,6 +44,7 @@ body{
 }
 
 .banner h1{
+    font-size: 50px;
     margin: 0;
     color: white;
     background-color: black;
