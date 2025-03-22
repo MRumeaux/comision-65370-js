@@ -45,6 +45,7 @@ body{
 .banner h1{
     margin: 0;
     color: white;
+    background-color: black;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     font-weight: bold;
 }
@@ -52,6 +53,7 @@ body{
 .banner p {
     font-size: 30px;
     color: white;
+    background-color: black;
     opacity: 0.7;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
