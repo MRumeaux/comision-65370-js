@@ -2,7 +2,7 @@ const contenidoTienda = document.getElementById("contenidoTienda");
 
 
 
-for(const manga of inventario){
+listaArticulos.forEach((manga) => {
 
     let contenedorArticulo = document.createElement("div");
     contenedorArticulo.className = "preview-articulo";
@@ -11,7 +11,7 @@ for(const manga of inventario){
                             <p class="precio-producto">Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
     contenidoTienda.appendChild(contenedorArticulo);
-}
+});
 
 const carrito = [];
 

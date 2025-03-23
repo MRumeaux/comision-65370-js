@@ -73,8 +73,8 @@ body{
 .contenidoTienda{
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 32px;
+    padding: 32px;
     justify-content: center;
     align-items: stretch;
 }
