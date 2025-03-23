@@ -3,10 +3,10 @@ function buscarPorGenero(genero) {
     return inventario.filter(manga => manga.genero === genero);
 }
 
-function buscarPorTitulo(query) {
-    const queryLower = query.toLowerCase();
+function buscarPorTitulo(busqueda) {
+    const ajustoBusqueda = busqueda.toLowerCase();
     return inventario.filter(manga => 
-        manga.titulo.toLowerCase().includes(queryLower));
+        manga.titulo.toLowerCase().includes(ajustoBusqueda));
 }
 
 function obtenerDestacados() {
@@ -91,8 +91,10 @@ function actualizarVistaCarrito() {
     carrito.forEach(articulo => {
         const subtotal = articulo.cantidad * articulo.precio;
         contenedorCarrito.innerHTML += `
-            <p>Titulo: ${articulo.titulo} - Precio unitario: ${articulo.precio} 
-               - Cantidad: ${articulo.cantidad} - Subtotal: ${subtotal}</p>`;
+            <p>Titulo: ${articulo.titulo}</p>
+            <p>Precio unitario: ${articulo.precio}</p> 
+            <p>Cantidad: ${articulo.cantidad}</p>
+            <p>Subtotal: ${subtotal}</p>`;
     });
     
     document.body.appendChild(contenedorCarrito);

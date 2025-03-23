@@ -7,14 +7,14 @@ class validacionErroresMangas extends Error {
 }
 
 // Función de validación de datos
-function validarArticulo(data) {
-    if (!data.id || !data.titulo || !data.precio) {
+function validarArticulo(articulo) {
+    if (!articulo.id || !articulo.titulo || !articulo.precio) {
         throw new validacionErroresMangas('Faltan campos requeridos (id, titulo o precio)');
     }
-    if (data.precio < 0) {
+    if (articulo.precio < 0) {
         throw new validacionErroresMangas('El precio no puede ser negativo');
     }
-    if (data.stock < 0) {
+    if (articulo.stock < 0) {
         throw new validacionErroresMangas('El stock no puede ser negativo');
     }
 }
