@@ -72,8 +72,9 @@ body{
 
 .contenidoTienda{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 20px;
     margin-top: 30px;
     margin-left: 80px;
     margin-right: 80px;
@@ -81,8 +82,9 @@ body{
 
 .preview-articulo{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
+    width: 300px;
+    flex: 0 0 300px;
+    margin: 0;
     text-align: center;
     font-family: Arial;
 }
