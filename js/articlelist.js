@@ -1,18 +1,70 @@
+// Sistema de manejo de errores personalizado
+class validacionErroresMangas extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'validacionErroresMangas';
+    }
+}
 
-function Articulo(id, titulo, genero, precio, descripcion, stock, imagenURL, autor, editorial, yearPublished, destacado){
-    this.id = id;
-    this.titulo = titulo;
-    this.genero = genero;
-    this.precio = parseInt(precio);
-    this.descripcion = descripcion;
-    this.stock = parseInt(stock);
-    this.imagenURL = imagenURL;
-    this.autor = autor;
-    this.editorial = editorial;
-    this.yearPublished = parseInt(yearPublished);
-    this.destacado = destacado;
-};
+// Función de validación de datos
+function validarArticulo(data) {
+    if (!data.id || !data.titulo || !data.precio) {
+        throw new validacionErroresMangas('Faltan campos requeridos (id, titulo o precio)');
+    }
+    if (data.precio < 0) {
+        throw new validacionErroresMangas('El precio no puede ser negativo');
+    }
+    if (data.stock < 0) {
+        throw new validacionErroresMangas('El stock no puede ser negativo');
+    }
+}
 
+// Constructor de artículos con validación
+function Articulo(id, titulo, genero, precio, descripcion, stock, imagenURL, autor, editorial, yearPublished, destacado) {
+    const mangaData = {
+        id: id,
+        titulo: titulo,
+        genero: genero,
+        precio: parseInt(precio),
+        descripcion: descripcion,
+        stock: parseInt(stock),
+        imagenURL: imagenURL,
+        autor: autor,
+        editorial: editorial,
+        yearPublished: parseInt(yearPublished),
+        destacado: destacado
+    };
+
+    try {
+        validarArticulo(mangaData);
+    } catch (error) {
+        console.error(`Error en manga ${titulo}:`, error.message);
+        throw error;
+    }
+
+    // Asignación de propiedades validadas
+    this.id = mangaData.id;
+    this.titulo = mangaData.titulo;
+    this.genero = mangaData.genero;
+    this.precio = mangaData.precio;
+    this.descripcion = mangaData.descripcion;
+    this.stock = mangaData.stock;
+    this.imagenURL = mangaData.imagenURL;
+    this.autor = mangaData.autor;
+    this.editorial = mangaData.editorial;
+    this.yearPublished = mangaData.yearPublished;
+    this.destacado = mangaData.destacado;
+
+    this.actualizarStock = function(cantidad) {
+        const nuevoStock = this.stock + cantidad;
+        if (nuevoStock < 0) {
+            throw new validacionErroresMangas('El stock no puede ser negativo');
+        }
+        this.stock = nuevoStock;
+    };
+}
+
+// Base de datos de mangas
 let listaArticulos = [
     ["1", "Chainsaw Man 1", "Shonen", 13900, "Denji es un joven cazador de demonios que, tras una traición, se fusiona con su perro motosierra Pochita.", 20, "https://static.wikia.nocookie.net/chainsaw-man/images/3/3a/Volumen_1.png/revision/latest?cb=20220922005416&path-prefix=es", "Tatsuki Fujimoto", "Ivrea", 2018, "No"],
     ["2", "Chainsaw Man 2", "Shonen", 13900, "Denji sigue su trabajo como Devil Hunter mientras enfrenta nuevos enemigos y aliados.", 20, "https://static.wikia.nocookie.net/chainsaw-man/images/9/9a/Volumen_2.png/revision/latest?cb=20220922005631&path-prefix=es", "Tatsuki Fujimoto", "Ivrea", 2018, "No"],
@@ -37,7 +89,13 @@ let listaArticulos = [
     ["21", "Hunter x Hunter 1", "Shonen", 15500, "Gon Freecss inicia su viaje para convertirse en cazador y encontrar a su padre.", 20, "https://static.wikia.nocookie.net/hunterxhunter/images/1/1e/Volumen_01.jpg/revision/latest?cb=20180919031459&path-prefix=es", "Yoshihiro Togashi", "Ivrea", 1998, "Si"],
     ["22", "Hunter x Hunter 2", "Shonen", 15500, "Gon y Killua comienzan su entrenamiento en la Torre Celestial.", 20, "https://static.wikia.nocookie.net/hunterxhunter/images/8/89/Volumen_02.jpg/revision/latest?cb=20180919031500&path-prefix=es", "Yoshihiro Togashi", "Ivrea", 1998, "Si"]
 ];
-/* Lista articulos */
 
-let inventario = listaArticulos.map(articulo => new Articulo(...articulo));
+// Creación del inventario con manejo de errores
+let inventario = [];
+try {
+    inventario = listaArticulos.map(articulo => new Articulo(...articulo));
+    console.log('Inventario cargado exitosamente');
+} catch (error) {
+    console.error('Error al cargar el inventario:', error.message);
+}
 

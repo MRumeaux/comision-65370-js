@@ -1,20 +1,39 @@
+// Funciones de búsqueda y filtrado
+function buscarPorGenero(genero) {
+    return inventario.filter(manga => manga.genero === genero);
+}
+
+function buscarPorTitulo(query) {
+    const queryLower = query.toLowerCase();
+    return inventario.filter(manga => 
+        manga.titulo.toLowerCase().includes(queryLower));
+}
+
+function obtenerDestacados() {
+    return inventario.filter(manga => manga.destacado === "Si");
+}
+
+// Renderizado de productos
 const contenidoTienda = document.getElementById("contenidoTienda");
 
+function renderizarProductos(productos = inventario) {
+    contenidoTienda.innerHTML = '';
+    productos.forEach(manga => {
+        let contenedorArticulo = document.createElement("div");
+        contenedorArticulo.className = "preview-articulo";
+        contenedorArticulo.innerHTML = `
+            <img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}">
+            <h2>${manga.titulo}</h2>
+            <p class="precio-producto">Precio: ${manga.precio}</p>
+            <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
+        contenidoTienda.appendChild(contenedorArticulo);
+    });
+}
 
-
-listaArticulos.forEach((manga) => {
-
-    let contenedorArticulo = document.createElement("div");
-    contenedorArticulo.className = "preview-articulo";
-    contenedorArticulo.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}">
-                            <h2>${manga.titulo}</h2>
-                            <p class="precio-producto">Precio: ${manga.precio}</p>
-                            <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
-    contenidoTienda.appendChild(contenedorArticulo);
-});
-
+// Inicialización del carrito
 const carrito = [];
 
+// Event listeners para botones de carrito
 document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     botonCarrito.addEventListener("click", (eventoMapeoID) => {
         let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
@@ -22,16 +41,12 @@ document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
     });
 });
 
-function copiarCarritoAlLocalStorage() {
-    let backUpCarrito = JSON.stringify(carrito);
-    localStorage.setItem("carrito", backUpCarrito);
-}
-
-const sumarArticulosACarrito = (idSeleccionArticulo) => {
-    const articuloSeleccionado = inventario.find (articulo => articulo.id === idSeleccionArticulo);
+// Funciones del carrito
+function sumarArticulosACarrito(idSeleccionArticulo) {
+    const articuloSeleccionado = inventario.find(articulo => articulo.id === idSeleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
-    if(articuloSeleccionado && !articuloEnCarrito){
+    if (articuloSeleccionado && !articuloEnCarrito) {
         const articuloCarrito = {
             id: articuloSeleccionado.id,
             titulo: articuloSeleccionado.titulo,
@@ -46,19 +61,48 @@ const sumarArticulosACarrito = (idSeleccionArticulo) => {
             destacado: articuloSeleccionado.destacado,
         }
         carrito.push(articuloCarrito);
-    }
-    else if(articuloSeleccionado && articuloEnCarrito){
+    } else if (articuloSeleccionado && articuloEnCarrito) {
         const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
         carrito[posicionEnCarrito].cantidad++;
     }
-    copiarCarritoAlLocalStorage();
+    actualizarLocalStorage();
+    actualizarVistaCarrito();
 }
 
+// Funciones de persistencia
+function actualizarLocalStorage() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
-function recuperarCarritoDelLocal(){
-    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
-};
+function recuperarCarritoDelLocal() {
+    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
+    if (carritoRecuperado) {
+        carrito.push(...carritoRecuperado);
+        actualizarVistaCarrito();
+    }
+}
 
+// Funciones de UI
+function actualizarVistaCarrito() {
+    const contenedorCarrito = document.querySelector("#contenedorCarrito") || document.createElement("div");
+    contenedorCarrito.id = "contenedorCarrito";
+    contenedorCarrito.innerHTML = "";
+    
+    carrito.forEach(articulo => {
+        const subtotal = articulo.cantidad * articulo.precio;
+        contenedorCarrito.innerHTML += `
+            <p>Titulo: ${articulo.titulo} - Precio unitario: ${articulo.precio} 
+               - Cantidad: ${articulo.cantidad} - Subtotal: ${subtotal}</p>`;
+    });
+    
+    document.body.appendChild(contenedorCarrito);
+}
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarProductos();
+    recuperarCarritoDelLocal();
+});
 
 let bienvenidaCarrito = document.createElement("p");
 bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
