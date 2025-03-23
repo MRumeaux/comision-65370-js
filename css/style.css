@@ -28,7 +28,7 @@ body{
     cursor: pointer;
 }
 
-.nav-carrito h1{
+.nav-carrito p{
     text-align: center;
     margin-left: 20px;
     font-size: large;
