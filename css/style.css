@@ -80,7 +80,6 @@ body{
 
 .contenidoTienda{
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 30px;
     margin-left: 80px;

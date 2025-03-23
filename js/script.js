@@ -10,7 +10,6 @@ for(const manga of inventario){
                             <p class="precio-producto">Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
     contenidoTienda.appendChild(contenedorArticulo);
-
 }
 
 const carrito = [];
