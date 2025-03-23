@@ -25,6 +25,7 @@ body{
 }
 
 .nav-carrito{
+    align-items: center;
     margin-left: 20px;
     cursor: pointer;
     font-size: 50px;
