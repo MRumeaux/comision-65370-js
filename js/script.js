@@ -6,7 +6,7 @@ for(const manga of inventario){
     let contenedorArticulo = document.createElement("div");
     contenedorArticulo.className = "preview-articulo";
     contenedorArticulo.innerHTML = `<img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}">
-                            <h2>Titulo: ${manga.titulo}</h2>
+                            <h2>${manga.titulo}</h2>
                             <p class="precio-producto">Precio: ${manga.precio}</p>
                             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
     contenidoTienda.appendChild(contenedorArticulo);
