@@ -180,6 +180,16 @@ body{
     cursor: pointer;
 }
 
+.restar-cantidad{
+    cursor: pointer;
+    color: red;
+}
+
+.sumar-cantidad{
+    cursor: pointer;
+    color: green;
+}
+
 .modal-contenedor img{
     height: 120px;
     width: auto;

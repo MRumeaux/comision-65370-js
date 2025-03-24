@@ -57,10 +57,30 @@ const armadoCarrito = () => {
         <img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}">
         <h3>${manga.titulo}</h3>
         <p>Precio unitario: ${manga.precio}</p>
+        <span class="restar-cantidad">➖</span>
         <p>Cantidad: ${manga.cantidad}</p>
+        <span class="sumar-cantidad">➕</span>
         <p>Subtotal: ${manga.cantidad * manga.precio}</p>
         `
     modalContenedor.appendChild(contenidoCarrito);
+    
+    let restarCantidad = contenidoCarrito.querySelector(".restar-cantidad");
+    restarCantidad.addEventListener("click", () => {
+        if (manga.cantidad > 1) {
+            manga.cantidad--;
+            armadoCarrito();
+            contarCarrito();
+            copiarCarritoAlLocalStorage();
+        }
+    });
+
+    let sumarCantidad = contenidoCarrito.querySelector(".sumar-cantidad");
+    sumarCantidad.addEventListener("click", () => {
+        manga.cantidad++;
+        armadoCarrito();
+        contarCarrito();
+        copiarCarritoAlLocalStorage();
+    });
 
     let eliminarArticulo = document.createElement("span");
     eliminarArticulo.className = "eliminar-articulo";
@@ -88,11 +108,15 @@ const eliminarProducto = () => {
         return mangaID !== posicionEnCarrito;
     });
     armadoCarrito();
+    contarCarrito();
     copiarCarritoAlLocalStorage();
 }
 
 const contarCarrito = () => {
     cuentoCarrito.style.display = "block";
-    cuentoCarrito.innerText = carrito.length;
+    const lengthCarrito = carrito.length;
+    localStorage.setItem("lengthCarrito", JSON.stringify(lengthCarrito));
+    cuentoCarrito.innerText = JSON.parse(localStorage.getItem("lengthCarrito"));
 };
 
+contarCarrito();
