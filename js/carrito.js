@@ -82,7 +82,7 @@ const armadoCarrito = () => {
 
 verCarrito.addEventListener("click", armadoCarrito);
 
-const eliminarArticulo = (id) => {
+const eliminarArticulo = () => {
     const posicionEnCarrito = carrito.find((manga) => manga.id);
     carrito = carrito.filter((mangaID) => {
         return mangaID != posicionEnCarrito;
