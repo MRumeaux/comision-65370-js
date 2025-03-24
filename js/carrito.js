@@ -88,6 +88,7 @@ const eliminarProducto = () => {
         return mangaID !== posicionEnCarrito;
     });
     armadoCarrito();
+    copiarCarritoAlLocalStorage();
 }
 
 const contarCarrito = () => {
