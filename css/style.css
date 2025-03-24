@@ -27,8 +27,12 @@ body{
 .nav-carrito{
     cursor: pointer;
     text-align: center;
-    margin-left: 20px;
-    font-size: 40px;
+    margin-right: 20px;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: white;
 }
 
 /* Componentes banner*/
