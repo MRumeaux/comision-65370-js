@@ -34,7 +34,7 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
 // Vista simple del carrito
 const verCarrito = document.getElementById("contenedor-carrito");
 const modalContenedor = document.getElementById("modal-contenedor");
-const contadorCarrito = document.getElementById("contador-carrito");
+const cuentoCarrito = document.getElementById("contador-carrito");
 
 const armadoCarrito = () => {
     modalContenedor.innerHTML = '';
@@ -91,8 +91,8 @@ const eliminarProducto = () => {
 }
 
 const contarCarrito = () => {
-    contadorCarrito.style.display = "block";
-    contadorCarrito.innerText = carrito.length;
+    cuentoCarrito.style.display = "block";
+    cuentoCarrito.innerText = carrito.length;
 };
 
 // Función para recuperar carrito (comentada hasta implementar limpieza)
