@@ -85,7 +85,7 @@ const armadoCarrito = () => {
 
     let eliminarArticulo = contenidoCarrito.querySelector(".eliminar-articulo");
     eliminarArticulo.addEventListener("click", () => {
-        eliminarArticulo(manga.id); 
+        eliminarProducto(manga.id); 
     });
 
     //let eliminarArticulo = document.createElement("span");
