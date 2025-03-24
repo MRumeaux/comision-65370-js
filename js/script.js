@@ -111,7 +111,6 @@ bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al mom
 document.body.appendChild(bienvenidaCarrito);
 
 let contenedorCarrito = document.createElement("p");
-    document.body.appendChild(bienvenidaCarrito);
 
 contenedorCarrito.innerText = "";
 for(articuloEnCarrito of carrito){
