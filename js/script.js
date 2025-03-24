@@ -91,6 +91,12 @@ function recuperarCarritoDelLocal() {
 */
 
 // Vista simple del carrito
+const verCarrito = document.getElementById("contenedorCarritoSimple");
+
+verCarrito.addEventListener("click", () => {
+    console.log("hola, funcionando");
+});
+
 function mostrarCarritoSimple() {
     let contenedorCarrito = document.querySelector("#contenedorCarritoSimple") || document.createElement("div");
     contenedorCarrito.id = "contenedorCarritoSimple";
