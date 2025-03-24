@@ -97,6 +97,8 @@ verCarrito.addEventListener("click", () => {
     console.log("hola, funcionando");
 });
 
+
+/*
 function mostrarCarritoSimple() {
     let contenedorCarrito = document.querySelector("#contenedorCarritoSimple") || document.createElement("div");
     contenedorCarrito.id = "contenedorCarritoSimple";
@@ -111,6 +113,7 @@ function mostrarCarritoSimple() {
         document.body.appendChild(contenedorCarrito);
     }
 }
+*/
 
 //recuperarCarritoDelLocal();
 /*
