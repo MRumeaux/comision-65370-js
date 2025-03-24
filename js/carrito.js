@@ -68,7 +68,7 @@ const armadoCarrito = () => {
     eliminarArticulo.className = "eliminar-articulo";
     eliminarArticulo.innerText = "❌";
     contenidoCarrito.appendChild(eliminarArticulo);
-    eliminarArticulo.addEventListener("click", eliminarArticulo);
+    eliminarArticulo.addEventListener("click", eliminarProducto);
     });
 
     const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);
@@ -82,7 +82,7 @@ const armadoCarrito = () => {
 
 verCarrito.addEventListener("click", armadoCarrito);
 
-const eliminarArticulo = () => {
+const eliminarProducto = () => {
     const posicionEnCarrito = carrito.find((manga) => manga.id);
     carrito = carrito.filter((mangaID) => {
         return mangaID !== posicionEnCarrito;
