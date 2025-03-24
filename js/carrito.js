@@ -25,7 +25,7 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
         const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
         carrito[posicionEnCarrito].cantidad++;
     }
-    
+    contarCarrito();
     copiarCarritoAlLocalStorage();
     mostrarCarritoSimple();
 }
