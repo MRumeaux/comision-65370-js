@@ -13,7 +13,6 @@ function obtenerDestacados() {
     return inventario.filter(manga => manga.destacado === "Si");
 }
 
-// Renderizado de productos
 const contenidoTienda = document.getElementById("contenido-tienda");
 
 function creacionTarjetasProductos(productos = inventario) {
@@ -47,3 +46,9 @@ function copiarCarritoAlLocalStorage() {
     localStorage.setItem("carrito", backUpCarrito);
 }
 
+function recuperarCarritoDelLocal() {
+    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
+    if (carritoRecuperado) {
+        carrito.push(...carritoRecuperado);
+    }
+}

@@ -27,7 +27,7 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
     }
     contarCarrito();
     copiarCarritoAlLocalStorage();
-    mostrarCarritoSimple();
+    recuperarCarritoDelLocal();
 }
 
 // Vista simple del carrito
@@ -96,30 +96,3 @@ const contarCarrito = () => {
     cuentoCarrito.innerText = carrito.length;
 };
 
-// Función para recuperar carrito (comentada hasta implementar limpieza)
-/*
-function recuperarCarritoDelLocal() {
-    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
-    if (carritoRecuperado) {
-        carrito.push(...carritoRecuperado);
-        mostrarCarritoSimple();
-    }
-}
-*/
-
-//recuperarCarritoDelLocal();
-/*
-let bienvenidaCarrito = document.createElement("p");
-bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
-document.body.appendChild(bienvenidaCarrito);
-
-let contenedorCarrito = document.createElement("p");
-
-contenedorCarrito.innerText = "";
-for(articuloEnCarrito of carrito){
-    let sumarCarritoDom = `Titulo: ${articuloEnCarrito.titulo} - Precio unitario: ${articuloEnCarrito.precio} - Cantidad seleccionada: ${articuloEnCarrito.cantidad} - Subtotal: ${articuloEnCarrito.cantidad * articuloEnCarrito.precio} \n`;
-    contenedorCarrito.innerHTML += sumarCarritoDom;
-}
-
-console.log(carrito);
-*/
