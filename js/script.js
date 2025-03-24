@@ -61,9 +61,11 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
             destacado: articuloSeleccionado.destacado,
         }
         carrito.push(articuloCarrito);
+        console.log('Artículo agregado:', articuloCarrito.titulo);
     } else if (articuloSeleccionado && articuloEnCarrito) {
         const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
         carrito[posicionEnCarrito].cantidad++;
+        console.log('Cantidad actualizada para:', articuloSeleccionado.titulo);
     }
     
     copiarCarritoAlLocalStorage();
@@ -79,10 +81,11 @@ function recuperarCarritoDelLocal() {
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
     if (carritoRecuperado) {
         carrito.push(...carritoRecuperado);
+        mostrarCarritoSimple();
     }
 }
 
-// Vista simple del carrito (como en tu versión original)
+// Vista simple del carrito
 function mostrarCarritoSimple() {
     let contenedorCarrito = document.querySelector("#contenedorCarritoSimple") || document.createElement("div");
     contenedorCarrito.id = "contenedorCarritoSimple";
@@ -98,11 +101,9 @@ function mostrarCarritoSimple() {
     }
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-    renderizarProductos();
-    recuperarCarritoDelLocal();
-});
+// Inicialización directa
+creacionTarjetasProductos();
+recuperarCarritoDelLocal();
 
 let bienvenidaCarrito = document.createElement("p");
 bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
