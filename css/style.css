@@ -181,6 +181,10 @@ body{
     margin: 10px;
 }
 
+.eliminar-articulo{
+    cursor: pointer;
+}
+
 .modal-contenedor img{
     height: 120px;
     width: auto;

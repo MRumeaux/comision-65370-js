@@ -1,5 +1,5 @@
 // Inicialización del carrito
-const carrito = [];
+let carrito = [];
 
 // Funciones del carrito
 function sumarArticulosACarrito(idSeleccionArticulo) {
@@ -63,10 +63,12 @@ const armadoCarrito = () => {
         <p>Subtotal: ${manga.cantidad * manga.precio}</p>
         `
     modalContenedor.appendChild(contenidoCarrito);
+
     let eliminarArticulo = document.createElement("span");
     eliminarArticulo.className = "eliminar-articulo";
     eliminarArticulo.innerText = "❌";
     contenidoCarrito.appendChild(eliminarArticulo);
+    eliminarArticulo.addEventListener("click", eliminarArticulo);
     });
 
     const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);
@@ -79,6 +81,14 @@ const armadoCarrito = () => {
 };
 
 verCarrito.addEventListener("click", armadoCarrito);
+
+const eliminarArticulo = (id) => {
+    const posicionEnCarrito = carrito.find((manga) => manga.id);
+    carrito = carrito.filter((mangaID) => {
+        return mangaID != posicionEnCarrito;
+    });
+    armadoCarrito();
+}
 
 // Función para recuperar carrito (comentada hasta implementar limpieza)
 /*
