@@ -105,7 +105,7 @@ function mostrarCarritoSimple() {
 }
 
 //recuperarCarritoDelLocal();
-
+/*
 let bienvenidaCarrito = document.createElement("p");
 bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
 document.body.appendChild(bienvenidaCarrito);
@@ -119,7 +119,7 @@ for(articuloEnCarrito of carrito){
 }
 
 console.log(carrito);
-
+*/
 
 
     
