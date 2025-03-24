@@ -28,7 +28,6 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
     
     copiarCarritoAlLocalStorage();
     mostrarCarritoSimple();
-    contarCarrito();
 }
 
 // Vista simple del carrito
@@ -78,6 +77,8 @@ const armadoCarrito = () => {
                             <h3>Total de la compra: ${total}</h3>
                             `
     modalContenedor.appendChild(totalCompra);
+    
+    contarCarrito();
 };
 
 verCarrito.addEventListener("click", armadoCarrito);
