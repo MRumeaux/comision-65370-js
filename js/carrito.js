@@ -61,6 +61,7 @@ const armadoCarrito = () => {
         <p>Cantidad: ${manga.cantidad}</p>
         <span class="sumar-cantidad">➕</span>
         <p>Subtotal: ${manga.cantidad * manga.precio}</p>
+        <span class="eliminar-articulo">❌</span>
         `
     modalContenedor.appendChild(contenidoCarrito);
     
@@ -82,11 +83,16 @@ const armadoCarrito = () => {
         copiarCarritoAlLocalStorage();
     });
 
-    let eliminarArticulo = document.createElement("span");
-    eliminarArticulo.className = "eliminar-articulo";
-    eliminarArticulo.innerText = "❌";
-    contenidoCarrito.appendChild(eliminarArticulo);
-    eliminarArticulo.addEventListener("click", eliminarProducto);
+    let eliminarArticulo = contenidoCarrito.querySelector(".eliminar-articulo");
+    eliminarArticulo.addEventListener("click", () => {
+        eliminarArticulo(manga.id); 
+    })
+
+    //let eliminarArticulo = document.createElement("span");
+    //eliminarArticulo.className = "eliminar-articulo";
+    //eliminarArticulo.innerText = "❌";
+    //contenidoCarrito.appendChild(eliminarArticulo);
+    //eliminarArticulo.addEventListener("click", eliminarProducto);
     });
 
     const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);
@@ -102,8 +108,8 @@ const armadoCarrito = () => {
 
 verCarrito.addEventListener("click", armadoCarrito);
 
-const eliminarProducto = () => {
-    const posicionEnCarrito = carrito.find((manga) => manga.id);
+const eliminarProducto = (id) => {
+    const posicionEnCarrito = carrito.find((manga) => manga.id === id);
     carrito = carrito.filter((mangaID) => {
         return mangaID !== posicionEnCarrito;
     });
