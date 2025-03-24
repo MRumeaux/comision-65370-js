@@ -134,6 +134,66 @@ body{
     opacity: 0.7;
 }
 
+/* Componentes modal */
+
+.modal-contenedor{
+    width: 80%;
+    margin: 0 10%;
+    max-height: 88vh;
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    overflow: auto;
+    z-index: 9;
+    top: 12vh;
+    scrollbar-color: none;
+}
+
+.modal-contenedor::-webkit-scrollbar{
+    display: none;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+.modal-header-titulo{
+    justify-self: start;
+}
+
+.modal-header-boton{
+    cursor: pointer;
+}
+
+.modal-contenido{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    margin: 10px;
+}
+
+.modal-contenedor img{
+    height: 120px;
+    width: auto;
+}
+
+.contenido-total{
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+
 
 
 /* posible ver carrito */
