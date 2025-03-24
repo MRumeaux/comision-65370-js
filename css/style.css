@@ -141,7 +141,7 @@ body{
     margin: 0 10%;
     max-height: 88vh;
     color: white;
-    background-color: rgba(0, 0, 0, 0.705);
+    background-color: rgb(34, 31, 31);
     display: flex;
     flex-direction: column;
     align-items: center;
