@@ -1,5 +1,5 @@
 // Inicialización del carrito
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Funciones del carrito
 function sumarArticulosACarrito(idSeleccionArticulo) {

@@ -45,10 +45,3 @@ function copiarCarritoAlLocalStorage() {
     let backUpCarrito = JSON.stringify(carrito);
     localStorage.setItem("carrito", backUpCarrito);
 }
-
-function recuperarCarritoDelLocal() {
-    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
-    if (carritoRecuperado) {
-        carrito.push(...carritoRecuperado);
-    }
-}
