@@ -13,6 +13,7 @@ body{
 .navbar{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 8vh;
     background-color: black;
 }
@@ -21,7 +22,6 @@ body{
     justify-self: start;
     margin-left: 20px;
     color: white;
-    margin-top: 3vh;
 }
 
 .nav-carrito{
@@ -29,9 +29,6 @@ body{
     text-align: center;
     margin-right: 20px;
     font-size: 32px;
-    display: flex;
-    align-items: center;
-    height: 100%;
     color: white;
 }
 
@@ -204,7 +201,7 @@ body{
     border-radius: 50%;
     font-size: 12px;
     padding: 4px;
-    top: 37px;
+    top: 1vh;
     right: 14px;
     position: absolute;
     display: none;
