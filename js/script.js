@@ -14,7 +14,7 @@ function obtenerDestacados() {
 }
 
 // Renderizado de productos
-const contenidoTienda = document.getElementById("contenidoTienda");
+const contenidoTienda = document.getElementById("contenido-tienda");
 
 function creacionTarjetasProductos(productos = inventario) {
     contenidoTienda.innerHTML = '';
@@ -92,10 +92,31 @@ function recuperarCarritoDelLocal() {
 
 // Vista simple del carrito
 const verCarrito = document.getElementById("contenedorCarritoSimple");
+const modalContenedor = document.getElementById("modal-contenedor");
 
 verCarrito.addEventListener("click", () => {
-    console.log("hola, funcionando");
+    const modalHeader = document.createElement("div");
+    modalHeader.className = "modal-header";
+    modalHeader.innerHTML = `<h1 class="modal-header-titulo">Carrito de compras</h1>
+                            <p class="modal-header-boton">X</p>`
+    modalContenedor.appendChild(modalHeader);   
+
+    carrito.forEach((manga) => {
+    let contenidoCarrito = document.createElement("div");
+    contenidoCarrito.className = "modal-contenido";
+    contenidoCarrito.innerHTML = `
+        <img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}">
+        <h3>${manga.titulo}</h3>
+        <p>Precio unitario: ${manga.precio}</p>
+        <p>Cantidad: ${manga.cantidad}</p>
+        <p>Subtotal: ${manga.cantidad * manga.precio}</p>
+        `
+    modalContenedor.appendChild(contenidoCarrito);
+    });
+
+    const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);
 });
+
 
 
 /*
