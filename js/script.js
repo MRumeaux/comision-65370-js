@@ -5,7 +5,7 @@ const llamarProductos = async () => {
     const datos = await respuesta.json();
 
     contenidoTienda.innerHTML = '';
-    productos.forEach(manga => {
+    datos.forEach(manga => {
         let contenedorArticulo = document.createElement("div");
         contenedorArticulo.className = "preview-articulo";
         contenedorArticulo.innerHTML = `
@@ -24,7 +24,7 @@ const llamarProductos = async () => {
             contarCarrito();
         });
     });
-}
+};
 
 llamarProductos();
 
