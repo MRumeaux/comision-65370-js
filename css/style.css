@@ -197,6 +197,17 @@ body{
     padding-top: 20px;
 }
 
+.contadorCarrito{
+    background-color: rgb(177, 12, 12);
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 4px;
+    top: 37px;
+    right: 14px;
+    position: absolute;
+    display: none;
+}
 
 
 

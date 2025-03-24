@@ -21,20 +21,20 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
             destacado: articuloSeleccionado.destacado,
         }
         carrito.push(articuloCarrito);
-        console.log('Artículo agregado:', articuloCarrito.titulo);
     } else if (articuloSeleccionado && articuloEnCarrito) {
         const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
         carrito[posicionEnCarrito].cantidad++;
-        console.log('Cantidad actualizada para:', articuloSeleccionado.titulo);
     }
     
     copiarCarritoAlLocalStorage();
     mostrarCarritoSimple();
+    contarCarrito();
 }
 
 // Vista simple del carrito
-const verCarrito = document.getElementById("contenedorCarritoSimple");
+const verCarrito = document.getElementById("contenedor-carrito");
 const modalContenedor = document.getElementById("modal-contenedor");
+const contadorCarrito = document.getElementById("contador-carrito");
 
 const armadoCarrito = () => {
     modalContenedor.innerHTML = '';
@@ -89,6 +89,11 @@ const eliminarProducto = () => {
     });
     armadoCarrito();
 }
+
+const contarCarrito = () => {
+    contarCarrito.style.display = "block";
+    contarCarrito.innerText = carrito.length;
+};
 
 // Función para recuperar carrito (comentada hasta implementar limpieza)
 /*
