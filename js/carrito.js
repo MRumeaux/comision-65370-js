@@ -1,0 +1,109 @@
+// Inicialización del carrito
+const carrito = [];
+
+// Funciones del carrito
+function sumarArticulosACarrito(idSeleccionArticulo) {
+    const articuloSeleccionado = inventario.find(articulo => articulo.id === idSeleccionArticulo);
+    const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
+
+    if (articuloSeleccionado && !articuloEnCarrito) {
+        const articuloCarrito = {
+            id: articuloSeleccionado.id,
+            titulo: articuloSeleccionado.titulo,
+            genero: articuloSeleccionado.genero,
+            precio: articuloSeleccionado.precio,
+            descripcion: articuloSeleccionado.descripcion,
+            cantidad: 1,
+            imagenURL: articuloSeleccionado.imagenURL,
+            autor: articuloSeleccionado.autor,
+            editorial: articuloSeleccionado.editorial,
+            yearPublished: articuloSeleccionado.yearPublished,
+            destacado: articuloSeleccionado.destacado,
+        }
+        carrito.push(articuloCarrito);
+        console.log('Artículo agregado:', articuloCarrito.titulo);
+    } else if (articuloSeleccionado && articuloEnCarrito) {
+        const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
+        carrito[posicionEnCarrito].cantidad++;
+        console.log('Cantidad actualizada para:', articuloSeleccionado.titulo);
+    }
+    
+    copiarCarritoAlLocalStorage();
+    mostrarCarritoSimple();
+}
+
+// Vista simple del carrito
+const verCarrito = document.getElementById("contenedorCarritoSimple");
+const modalContenedor = document.getElementById("modal-contenedor");
+
+const armadoCarrito = () => {
+    modalContenedor.innerHTML = '';
+    modalContenedor.style.display = "flex";
+    const modalHeader = document.createElement("div");
+    modalHeader.className = "modal-header";
+    modalHeader.innerHTML = `<h1 class="modal-header-titulo">Carrito de compras</h1>`
+    modalContenedor.appendChild(modalHeader);   
+
+    const modalBoton = document.createElement("p");
+    modalBoton.innerText = "X";
+    modalBoton.className = "modal-header-boton";
+    modalBoton.addEventListener("click", () => {
+        modalContenedor.style.display = "none";
+    });
+    modalHeader.appendChild(modalBoton);
+
+    carrito.forEach((manga) => {
+    let contenidoCarrito = document.createElement("div");
+    contenidoCarrito.className = "modal-contenido";
+    contenidoCarrito.innerHTML = `
+        <img src="${manga.imagenURL}" alt="Imagen de la portada ${manga.titulo}">
+        <h3>${manga.titulo}</h3>
+        <p>Precio unitario: ${manga.precio}</p>
+        <p>Cantidad: ${manga.cantidad}</p>
+        <p>Subtotal: ${manga.cantidad * manga.precio}</p>
+        `
+    modalContenedor.appendChild(contenidoCarrito);
+    let eliminarArticulo = document.createElement("span");
+    eliminarArticulo.className = "eliminar-articulo";
+    eliminarArticulo.innerText = "❌";
+    contenidoCarrito.appendChild(eliminarArticulo);
+    });
+
+    const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);
+    const totalCompra = document.createElement("div");
+    totalCompra.className = "contenido-total";
+    totalCompra.innerHTML = `
+                            <h3>Total de la compra: ${total}</h3>
+                            `
+    modalContenedor.appendChild(totalCompra);
+};
+
+verCarrito.addEventListener("click", armadoCarrito);
+
+// Función para recuperar carrito (comentada hasta implementar limpieza)
+/*
+function recuperarCarritoDelLocal() {
+    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
+    if (carritoRecuperado) {
+        carrito.push(...carritoRecuperado);
+        mostrarCarritoSimple();
+    }
+}
+*/
+
+//recuperarCarritoDelLocal();
+/*
+let bienvenidaCarrito = document.createElement("p");
+bienvenidaCarrito.innerHTML = `A continuación podrá ver lo seleccionado al momento \n`;
+document.body.appendChild(bienvenidaCarrito);
+
+let contenedorCarrito = document.createElement("p");
+
+contenedorCarrito.innerText = "";
+for(articuloEnCarrito of carrito){
+    let sumarCarritoDom = `Titulo: ${articuloEnCarrito.titulo} - Precio unitario: ${articuloEnCarrito.precio} - Cantidad seleccionada: ${articuloEnCarrito.cantidad} - Subtotal: ${articuloEnCarrito.cantidad * articuloEnCarrito.precio} \n`;
+    contenedorCarrito.innerHTML += sumarCarritoDom;
+}
+
+console.log(carrito);
+*/
