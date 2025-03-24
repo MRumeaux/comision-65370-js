@@ -28,18 +28,18 @@ function creacionTarjetasProductos(productos = inventario) {
             <button class="sumarAlCarrito" data-id="${manga.id}">Sumar al carrito</button>`;
         contenidoTienda.appendChild(contenedorArticulo);
     });
+
+    // Configurar event listeners después de crear los botones
+    document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
+        botonCarrito.addEventListener("click", (eventoMapeoID) => {
+            let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
+            sumarArticulosACarrito(idSeleccionArticulo);
+        });
+    });
 }
 
 // Inicialización del carrito
 const carrito = [];
-
-// Event listeners para botones de carrito
-document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
-    botonCarrito.addEventListener("click", (eventoMapeoID) => {
-        let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
-        sumarArticulosACarrito(idSeleccionArticulo);
-    });
-});
 
 // Funciones del carrito
 function sumarArticulosACarrito(idSeleccionArticulo) {
@@ -65,39 +65,37 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
         const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
         carrito[posicionEnCarrito].cantidad++;
     }
-    actualizarLocalStorage();
-    actualizarVistaCarrito();
+    
+    copiarCarritoAlLocalStorage();
+    mostrarCarritoSimple();
 }
 
-// Funciones de persistencia
-function actualizarLocalStorage() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+function copiarCarritoAlLocalStorage() {
+    let backUpCarrito = JSON.stringify(carrito);
+    localStorage.setItem("carrito", backUpCarrito);
 }
 
 function recuperarCarritoDelLocal() {
     const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
     if (carritoRecuperado) {
         carrito.push(...carritoRecuperado);
-        actualizarVistaCarrito();
     }
 }
 
-// Funciones de UI
-function actualizarVistaCarrito() {
-    const contenedorCarrito = document.querySelector("#contenedorCarrito") || document.createElement("div");
-    contenedorCarrito.id = "contenedorCarrito";
-    contenedorCarrito.innerHTML = "";
+// Vista simple del carrito (como en tu versión original)
+function mostrarCarritoSimple() {
+    let contenedorCarrito = document.querySelector("#contenedorCarritoSimple") || document.createElement("div");
+    contenedorCarrito.id = "contenedorCarritoSimple";
+    contenedorCarrito.innerHTML = `<p>A continuación podrá ver lo seleccionado al momento</p>`;
     
-    carrito.forEach(articulo => {
-        const subtotal = articulo.cantidad * articulo.precio;
-        contenedorCarrito.innerHTML += `
-            <p>Titulo: ${articulo.titulo}</p>
-            <p>Precio unitario: ${articulo.precio}</p> 
-            <p>Cantidad: ${articulo.cantidad}</p>
-            <p>Subtotal: ${subtotal}</p>`;
+    carrito.forEach(articuloEnCarrito => {
+        let sumarCarritoDom = `Titulo: ${articuloEnCarrito.titulo} - Precio unitario: ${articuloEnCarrito.precio} - Cantidad seleccionada: ${articuloEnCarrito.cantidad} - Subtotal: ${articuloEnCarrito.cantidad * articuloEnCarrito.precio} \n`;
+        contenedorCarrito.innerHTML += sumarCarritoDom;
     });
-    
-    document.body.appendChild(contenedorCarrito);
+
+    if (!document.querySelector("#contenedorCarritoSimple")) {
+        document.body.appendChild(contenedorCarrito);
+    }
 }
 
 // Inicialización
