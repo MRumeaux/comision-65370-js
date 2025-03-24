@@ -27,7 +27,6 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
     }
     contarCarrito();
     copiarCarritoAlLocalStorage();
-    recuperarCarritoDelLocal();
 }
 
 // Vista simple del carrito
