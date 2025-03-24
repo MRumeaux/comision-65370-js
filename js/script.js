@@ -16,7 +16,7 @@ function obtenerDestacados() {
 // Renderizado de productos
 const contenidoTienda = document.getElementById("contenidoTienda");
 
-function renderizarProductos(productos = inventario) {
+function creacionTarjetasProductos(productos = inventario) {
     contenidoTienda.innerHTML = '';
     productos.forEach(manga => {
         let contenedorArticulo = document.createElement("div");
