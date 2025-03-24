@@ -95,6 +95,7 @@ const verCarrito = document.getElementById("contenedorCarritoSimple");
 const modalContenedor = document.getElementById("modal-contenedor");
 
 verCarrito.addEventListener("click", () => {
+    contenidoTienda.innerHTML = '';
     const modalHeader = document.createElement("div");
     modalHeader.className = "modal-header";
     modalHeader.innerHTML = `<h1 class="modal-header-titulo">Carrito de compras</h1>
@@ -115,6 +116,12 @@ verCarrito.addEventListener("click", () => {
     });
 
     const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);
+    const totalCompra = document.createElement("div");
+    totalCompra.className = "contenido-total";
+    totalCompra.innerHTML = `
+                            <h3>Total de la compra: ${total}</h3>
+                            `
+    modalContenedor.appendChild(totalCompra);
 });
 
 
