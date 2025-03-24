@@ -1,4 +1,14 @@
+// Vista simple del carrito
+const verCarrito = document.getElementById("contenedor-carrito");
+const modalContenedor = document.getElementById("modal-contenedor");
+const cuentoCarrito = document.getElementById("contador-carrito");
+
 // Inicialización del carrito
+function copiarCarritoAlLocalStorage() {
+    let backUpCarrito = JSON.stringify(carrito);
+    localStorage.setItem("carrito", backUpCarrito);
+}
+
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Funciones del carrito
@@ -28,11 +38,6 @@ function sumarArticulosACarrito(idSeleccionArticulo) {
     contarCarrito();
     copiarCarritoAlLocalStorage();
 }
-
-// Vista simple del carrito
-const verCarrito = document.getElementById("contenedor-carrito");
-const modalContenedor = document.getElementById("modal-contenedor");
-const cuentoCarrito = document.getElementById("contador-carrito");
 
 const armadoCarrito = () => {
     modalContenedor.innerHTML = '';
@@ -88,11 +93,6 @@ const armadoCarrito = () => {
         eliminarProducto(manga.id); 
     });
 
-    //let eliminarArticulo = document.createElement("span");
-    //eliminarArticulo.className = "eliminar-articulo";
-    //eliminarArticulo.innerText = "❌";
-    //contenidoCarrito.appendChild(eliminarArticulo);
-    //eliminarArticulo.addEventListener("click", eliminarProducto);
     });
 
     const total = carrito.reduce((acc, manga) => acc + (manga.precio * manga.cantidad), 0);

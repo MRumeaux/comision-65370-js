@@ -1,21 +1,9 @@
-// Funciones de búsqueda y filtrado
-function buscarPorGenero(genero) {
-    return inventario.filter(manga => manga.genero === genero);
-}
-
-function buscarPorTitulo(busqueda) {
-    const ajustoBusqueda = busqueda.toLowerCase();
-    return inventario.filter(manga => 
-        manga.titulo.toLowerCase().includes(ajustoBusqueda));
-}
-
-function obtenerDestacados() {
-    return inventario.filter(manga => manga.destacado === "Si");
-}
-
 const contenidoTienda = document.getElementById("contenido-tienda");
 
-function creacionTarjetasProductos(productos = inventario) {
+const llamarProductos = async () => {
+    const respuesta = await fetch("datos.json");
+    const datos = await respuesta.json();
+
     contenidoTienda.innerHTML = '';
     productos.forEach(manga => {
         let contenedorArticulo = document.createElement("div");
@@ -38,10 +26,20 @@ function creacionTarjetasProductos(productos = inventario) {
     });
 }
 
-creacionTarjetasProductos();  // Llamada inicial para mostrar todos los productos
+llamarProductos();
 
 
-function copiarCarritoAlLocalStorage() {
-    let backUpCarrito = JSON.stringify(carrito);
-    localStorage.setItem("carrito", backUpCarrito);
+// Funciones de búsqueda y filtrado
+function buscarPorGenero(genero) {
+    return inventario.filter(manga => manga.genero === genero);
+}
+
+function buscarPorTitulo(busqueda) {
+    const ajustoBusqueda = busqueda.toLowerCase();
+    return inventario.filter(manga => 
+        manga.titulo.toLowerCase().includes(ajustoBusqueda));
+}
+
+function obtenerDestacados() {
+    return inventario.filter(manga => manga.destacado === "Si");
 }
