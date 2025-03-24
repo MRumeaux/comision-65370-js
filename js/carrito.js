@@ -86,7 +86,7 @@ const armadoCarrito = () => {
     let eliminarArticulo = contenidoCarrito.querySelector(".eliminar-articulo");
     eliminarArticulo.addEventListener("click", () => {
         eliminarArticulo(manga.id); 
-    })
+    });
 
     //let eliminarArticulo = document.createElement("span");
     //eliminarArticulo.className = "eliminar-articulo";
@@ -110,6 +110,7 @@ verCarrito.addEventListener("click", armadoCarrito);
 
 const eliminarProducto = (id) => {
     const posicionEnCarrito = carrito.find((manga) => manga.id === id);
+    console.log(posicionEnCarrito);
     carrito = carrito.filter((mangaID) => {
         return mangaID !== posicionEnCarrito;
     });
