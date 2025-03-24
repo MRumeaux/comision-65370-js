@@ -34,6 +34,7 @@ function creacionTarjetasProductos(productos = inventario) {
         botonCarrito.addEventListener("click", (eventoMapeoID) => {
             let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
             sumarArticulosACarrito(idSeleccionArticulo);
+            contarCarrito();
         });
     });
 }
