@@ -13,7 +13,7 @@ body{
 .navbar{
     display: flex;
     justify-content: space-between;
-    height: 6vh;
+    height: 10vh;
     background-color: black;
 }
 
@@ -21,7 +21,7 @@ body{
     justify-self: start;
     margin-left: 20px;
     color: white;
-    margin-top: 2vh;
+    margin-top: 4vh;
 }
 
 .nav-carrito{
