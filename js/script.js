@@ -96,6 +96,7 @@ const modalContenedor = document.getElementById("modal-contenedor");
 
 verCarrito.addEventListener("click", () => {
     modalContenedor.innerHTML = '';
+    modalContenedor.style.display = "flex";
     const modalHeader = document.createElement("div");
     modalHeader.className = "modal-header";
     modalHeader.innerHTML = `<h1 class="modal-header-titulo">Carrito de compras</h1>`
