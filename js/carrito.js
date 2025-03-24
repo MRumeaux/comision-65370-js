@@ -91,8 +91,8 @@ const eliminarProducto = () => {
 }
 
 const contarCarrito = () => {
-    contarCarrito.style.display = "block";
-    contarCarrito.innerText = carrito.length;
+    contadorCarrito.style.display = "block";
+    contadorCarrito.innerText = carrito.length;
 };
 
 // Función para recuperar carrito (comentada hasta implementar limpieza)
