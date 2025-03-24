@@ -110,7 +110,6 @@ verCarrito.addEventListener("click", armadoCarrito);
 
 const eliminarProducto = (id) => {
     const posicionEnCarrito = carrito.find((manga) => manga.id === id);
-    console.log(posicionEnCarrito);
     carrito = carrito.filter((mangaID) => {
         return mangaID !== posicionEnCarrito;
     });
