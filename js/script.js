@@ -98,9 +98,16 @@ verCarrito.addEventListener("click", () => {
     contenidoTienda.innerHTML = '';
     const modalHeader = document.createElement("div");
     modalHeader.className = "modal-header";
-    modalHeader.innerHTML = `<h1 class="modal-header-titulo">Carrito de compras</h1>
-                            <p class="modal-header-boton">X</p>`
+    modalHeader.innerHTML = `<h1 class="modal-header-titulo">Carrito de compras</h1>`
     modalContenedor.appendChild(modalHeader);   
+
+    const modalBoton = document.createElement("p");
+    modalBoton.innerText = "X";
+    modalBoton.className = "modal-header-boton";
+    modalBoton.addEventListener("click", () => {
+        modalContenedor.style.display = "none";
+    });
+    modalHeader.appendChild(modalBoton);
 
     carrito.forEach((manga) => {
     let contenidoCarrito = document.createElement("div");
