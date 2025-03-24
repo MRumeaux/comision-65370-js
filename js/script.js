@@ -38,6 +38,8 @@ function creacionTarjetasProductos(productos = inventario) {
     });
 }
 
+creacionTarjetasProductos();  // Llamada inicial para mostrar todos los productos
+
 // Inicialización del carrito
 const carrito = [];
 
