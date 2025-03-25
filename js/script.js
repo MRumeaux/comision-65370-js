@@ -2,42 +2,51 @@ const contenidoTienda = document.getElementById("contenido-tienda");
 const buscador = document.getElementById("buscador");
 const sinResultados = document.getElementById("sinResultados");
 let datosProductos = [];
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const cargarDatos = async () => {
-    const respuesta = await fetch("datos.json");
-    datosProductos = await respuesta.json();
-    return datosProductos;
+    try {
+        const respuesta = await fetch("datos.json");
+        datosProductos = await respuesta.json();
+        
+        const generos = [...new Set(datosProductos.map(manga => manga.genero))].sort();
+        const seleccionGenero = document.getElementById("filtroGenero");
+        
+        const opcionTodos = seleccionGenero.firstElementChild;
+        seleccionGenero.innerHTML = '';
+        seleccionGenero.appendChild(opcionTodos);
+        
+        generos.forEach(genero => {
+            const option = document.createElement("option");
+            option.value = genero;
+            option.textContent = genero;
+            seleccionGenero.appendChild(option);
+        });
+
+        buscador.addEventListener("input", tipeoBuscador);
+        seleccionGenero.addEventListener("change", tipeoBuscador);
+        
+        return datosProductos;
+    } catch (error) {
+        console.error("Error al cargar los datos:", error);
+        Swal.fire({
+            title: 'Error al cargar los datos',
+            text: 'No pudimos cargar los mangas, por favor recargá la página.',
+            icon: 'error',
+            confirmButtonText: 'Reintentar',
+            confirmButtonColor: '#000000',
+            background: '#ffffff'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.reload();
+            }
+        });
+        return [];
+    }
 };
-
-function obtenerGenerosUnicos() {
-    const listaGeneros = [...new Set(datosProductos.map(manga => manga.genero))];
-    return listaGeneros.sort();
-}
-
-function mostrarGenerosEnFiltro() {
-    const seleccionGenero = document.getElementById("filtroGenero");
-    const generos = obtenerGenerosUnicos();
-    
-    const opcionTodos = seleccionGenero.firstElementChild;
-    seleccionGenero.innerHTML = '';
-    seleccionGenero.appendChild(opcionTodos);
-    
-    generos.forEach(genero => {
-        const option = document.createElement("option");
-        option.value = genero;
-        option.textContent = genero;
-        seleccionGenero.appendChild(option);
-    });
-}
 
 const llamarProductos = async (mangasAMostrar) => {
     contenidoTienda.classList.add('desaparecer');
     try {
-        if (!mangasAMostrar) {
-            mangasAMostrar = await cargarDatos();
-        }
-
         contenidoTienda.innerHTML = '';
         mangasAMostrar.forEach((manga, indiceAnimacion) => {
             let contenedorArticulo = document.createElement("div");
@@ -81,7 +90,7 @@ const llamarProductos = async (mangasAMostrar) => {
     }
 };
 
-const tipeoBuscador = async () => {
+const tipeoBuscador = () => {
     const busqueda = buscador.value.toLowerCase().trim();
     const generoSeleccionado = document.getElementById("filtroGenero").value;
     
@@ -92,15 +101,7 @@ const tipeoBuscador = async () => {
     });
     
     sinResultados.classList.toggle('mostrar', mangasFiltrados.length === 0);
-    await llamarProductos(mangasFiltrados);
+    llamarProductos(mangasFiltrados);
 };
 
-async function inicializarTienda() {
-    await cargarDatos();
-    mostrarGenerosEnFiltro();
-    buscador.addEventListener("input", tipeoBuscador);
-    document.getElementById("filtroGenero").addEventListener("change", tipeoBuscador);
-    await llamarProductos(datosProductos);
-}
-
-inicializarTienda();
+cargarDatos().then(datos => llamarProductos(datos));

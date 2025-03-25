@@ -10,9 +10,9 @@ function copiarCarritoAlLocalStorage() {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 async function sumarArticulosACarrito(idSeleccionArticulo) {
-    const respuesta = await fetch("datos.json");
-    const datos = await respuesta.json();
-    const articuloSeleccionado = datos.find(articulo => articulo.id === idSeleccionArticulo);
+    idSeleccionArticulo = String(idSeleccionArticulo);
+    
+    const articuloSeleccionado = datosProductos.find(articulo => articulo.id === idSeleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
     if (articuloSeleccionado && !articuloEnCarrito) {
@@ -31,7 +31,7 @@ async function sumarArticulosACarrito(idSeleccionArticulo) {
         }
         carrito.push(articuloCarrito);
     } else if (articuloSeleccionado && articuloEnCarrito) {
-        const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === articuloSeleccionado.id);
+        const posicionEnCarrito = carrito.findIndex(articulo => articulo.id === idSeleccionArticulo);
         carrito[posicionEnCarrito].cantidad++;
     }
     contarCarrito();
