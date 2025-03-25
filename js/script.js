@@ -10,12 +10,32 @@ const cargarDatos = async () => {
     return datosProductos;
 };
 
+function obtenerGenerosUnicos() {
+    const listaGeneros = [...new Set(datosProductos.map(manga => manga.genero))];
+    return listaGeneros.sort();
+}
+
+function mostrarGenerosEnFiltro() {
+    const seleccionGenero = document.getElementById("filtroGenero");
+    const generos = obtenerGenerosUnicos();
+    
+    const opcionTodos = seleccionGenero.firstElementChild;
+    seleccionGenero.innerHTML = '';
+    seleccionGenero.appendChild(opcionTodos);
+    
+    generos.forEach(genero => {
+        const option = document.createElement("option");
+        option.value = genero;
+        option.textContent = genero;
+        seleccionGenero.appendChild(option);
+    });
+}
+
 const llamarProductos = async (mangasAMostrar) => {
     contenidoTienda.classList.add('desaparecer');
     try {
         if (!mangasAMostrar) {
             mangasAMostrar = await cargarDatos();
-            mostrarGenerosEnFiltro();
         }
 
         contenidoTienda.innerHTML = '';
@@ -50,7 +70,7 @@ const llamarProductos = async (mangasAMostrar) => {
             background: '#ffffff'
         }).then((result) => {
             if (result.isConfirmed) {
-                llamarProductos();
+                inicializarTienda();
             }
         });
     } finally {
@@ -75,28 +95,12 @@ const tipeoBuscador = async () => {
     await llamarProductos(mangasFiltrados);
 };
 
-buscador.addEventListener("input", tipeoBuscador);
-document.getElementById("filtroGenero").addEventListener("change", tipeoBuscador);
-
-llamarProductos();
-
-function obtenerGenerosUnicos() {
-    const listaGeneros = [...new Set(datosProductos.map(manga => manga.genero))];
-    return listaGeneros.sort();
+async function inicializarTienda() {
+    await cargarDatos();
+    mostrarGenerosEnFiltro();
+    buscador.addEventListener("input", tipeoBuscador);
+    document.getElementById("filtroGenero").addEventListener("change", tipeoBuscador);
+    await llamarProductos(datosProductos);
 }
 
-function mostrarGenerosEnFiltro() {
-    const seleccionGenero = document.getElementById("filtroGenero");
-    const generos = obtenerGenerosUnicos();
-    
-    const opcionTodos = seleccionGenero.firstElementChild;
-    seleccionGenero.innerHTML = '';
-    seleccionGenero.appendChild(opcionTodos);
-    
-    generos.forEach(genero => {
-        const option = document.createElement("option");
-        option.value = genero;
-        option.textContent = genero;
-        seleccionGenero.appendChild(option);
-    });
-}
+inicializarTienda();
