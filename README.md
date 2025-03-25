@@ -33,4 +33,4 @@ La app cuenta con:
 - Modal de carrito
 - Proceso de checkout
 
-(no sé si así era el resumen que se pensaba o era algo con más detalles, perdón)
+(no sé si así era el resumen que se pensaba o era algo con más detalles, perdón!)
