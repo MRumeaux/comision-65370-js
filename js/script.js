@@ -76,9 +76,3 @@ async function buscarPorGenero(genero) {
     return datos.filter(manga => manga.genero === genero);
 }
 
-async function obtenerDestacados() {
-    const respuesta = await fetch("datos.json");
-    const datos = await respuesta.json();
-    return datos.filter(manga => manga.destacado === "Si");
-}
-
