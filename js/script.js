@@ -61,7 +61,7 @@ const llamarProductos = async (mangasAMostrar) => {
     }
 };
 
-const tipeoBuscador = () => {
+const tipeoBuscador = async () => {
     const busqueda = buscador.value.toLowerCase().trim();
     const generoSeleccionado = document.getElementById("filtroGenero").value;
     
@@ -72,7 +72,7 @@ const tipeoBuscador = () => {
     });
     
     sinResultados.classList.toggle('mostrar', mangasFiltrados.length === 0);
-    llamarProductos(mangasFiltrados);
+    await llamarProductos(mangasFiltrados);
 };
 
 buscador.addEventListener("input", tipeoBuscador);
