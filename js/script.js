@@ -1,4 +1,5 @@
 const contenidoTienda = document.getElementById("contenido-tienda");
+const buscador = document.getElementById("buscador");
 
 const llamarProductos = async () => {
     // Iniciar animación de salida
@@ -7,11 +8,8 @@ const llamarProductos = async () => {
     try {
         const respuesta = await fetch("datos.json");
         const datos = await respuesta.json();
-
-        // Limpiar el contenedor
         contenidoTienda.innerHTML = '';
         
-        // Renderizar productos con animación
         datos.forEach((manga, index) => {
             let contenedorArticulo = document.createElement("div");
             contenedorArticulo.className = "preview-articulo";
@@ -24,7 +22,6 @@ const llamarProductos = async () => {
             contenidoTienda.appendChild(contenedorArticulo);
         });
 
-        // Configurar event listeners después de crear los botones
         document.querySelectorAll(".sumarAlCarrito").forEach(botonCarrito => {
             botonCarrito.addEventListener("click", async (eventoMapeoID) => {
                 let idSeleccionArticulo = eventoMapeoID.target.getAttribute("data-id");
@@ -36,9 +33,8 @@ const llamarProductos = async () => {
     } catch (error) {
         console.error("Error al cargar los productos:", error);
         
-        // Usar SweetAlert2 para mostrar el error
         Swal.fire({
-            title: 'Algo salió mal',
+            title: 'Error de carga',
             text: 'No pudimos cargar los productos... Por favor intentá de nuevo más tarde.',
             icon: 'error',
             confirmButtonText: 'Reintentar',
@@ -51,11 +47,10 @@ const llamarProductos = async () => {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                llamarProductos(); // Reintentar cargar los productos
+                llamarProductos(); 
             }
         });
     } finally {
-        // Asegurar que la animación se complete
         setTimeout(() => {
             contenidoTienda.classList.remove('desaparecer');
             contenidoTienda.classList.add('aparecer');
@@ -64,6 +59,12 @@ const llamarProductos = async () => {
 };
 
 llamarProductos();
+
+const tipeoBuscador = () => {
+    const busqueda = buscador.value.toLowerCase();
+    const mangasFiltrados = datos.filter((manga) => manga.titulo.toLowerCase().startsWith(busqueda));
+};
+
 
 async function buscarPorGenero(genero) {
     const respuesta = await fetch("datos.json");
@@ -84,3 +85,4 @@ async function obtenerDestacados() {
     const datos = await respuesta.json();
     return datos.filter(manga => manga.destacado === "Si");
 }
+
