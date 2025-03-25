@@ -1,7 +1,8 @@
 const contenidoTienda = document.getElementById("contenido-tienda");
 const buscador = document.getElementById("buscador");
 const sinResultados = document.getElementById("sinResultados");
-let datosProductos = []; 
+let datosProductos = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const cargarDatos = async () => {
     const respuesta = await fetch("datos.json");
@@ -14,6 +15,7 @@ const llamarProductos = async (mangasAMostrar) => {
     try {
         if (!mangasAMostrar) {
             mangasAMostrar = await cargarDatos();
+            mostrarGenerosEnFiltro();
         }
 
         contenidoTienda.innerHTML = '';
@@ -61,18 +63,40 @@ const llamarProductos = async (mangasAMostrar) => {
 
 const tipeoBuscador = () => {
     const busqueda = buscador.value.toLowerCase().trim();
-    const mangasFiltrados = datosProductos.filter((manga) => manga.titulo.toLowerCase().includes(busqueda));
+    const generoSeleccionado = document.getElementById("filtroGenero").value;
+    
+    const mangasFiltrados = datosProductos.filter((manga) => {
+        const coincideTitulo = manga.titulo.toLowerCase().includes(busqueda);
+        const coincideGenero = !generoSeleccionado || manga.genero === generoSeleccionado;
+        return coincideTitulo && coincideGenero;
+    });
+    
     sinResultados.classList.toggle('mostrar', mangasFiltrados.length === 0);
     llamarProductos(mangasFiltrados);
 };
 
 buscador.addEventListener("input", tipeoBuscador);
+document.getElementById("filtroGenero").addEventListener("change", tipeoBuscador);
 
 llamarProductos();
 
-async function buscarPorGenero(genero) {
-    const respuesta = await fetch("datos.json");
-    const datos = await respuesta.json();
-    return datos.filter(manga => manga.genero === genero);
+function obtenerGenerosUnicos() {
+    const listaGeneros = [...new Set(datosProductos.map(manga => manga.genero))];
+    return listaGeneros.sort();
 }
 
+function mostrarGenerosEnFiltro() {
+    const seleccionGenero = document.getElementById("filtroGenero");
+    const generos = obtenerGenerosUnicos();
+    
+    const opcionTodos = seleccionGenero.firstElementChild;
+    seleccionGenero.innerHTML = '';
+    seleccionGenero.appendChild(opcionTodos);
+    
+    generos.forEach(genero => {
+        const option = document.createElement("option");
+        option.value = genero;
+        option.textContent = genero;
+        seleccionGenero.appendChild(option);
+    });
+}
