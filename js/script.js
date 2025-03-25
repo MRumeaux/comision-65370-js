@@ -1,7 +1,7 @@
 const contenidoTienda = document.getElementById("contenido-tienda");
 const buscador = document.getElementById("buscador");
 
-const llamarProductos = async () => {
+const llamarProductos = async (mangasListados) => {
     // Iniciar animación de salida
     contenidoTienda.classList.add('desaparecer');
     
@@ -10,7 +10,7 @@ const llamarProductos = async () => {
         const datos = await respuesta.json();
         contenidoTienda.innerHTML = '';
         
-        datos.forEach((manga, index) => {
+        mangasListados.forEach((manga, index) => {
             let contenedorArticulo = document.createElement("div");
             contenedorArticulo.className = "preview-articulo";
             contenedorArticulo.style.animationDelay = `${index * 0.1}s`; // Efecto cascada
@@ -58,13 +58,14 @@ const llamarProductos = async () => {
     }
 };
 
-llamarProductos();
 
 const tipeoBuscador = () => {
     const busqueda = buscador.value.toLowerCase();
     const mangasFiltrados = datos.filter((manga) => manga.titulo.toLowerCase().startsWith(busqueda));
+    llamarProductos(mangasFiltrados);
 };
 
+llamarProductos(datos);
 
 async function buscarPorGenero(genero) {
     const respuesta = await fetch("datos.json");
