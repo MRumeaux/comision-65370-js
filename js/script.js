@@ -57,7 +57,6 @@ const llamarProductos = async (mangasAMostrar) => {
         });
 
     } catch (error) {
-        console.error("Error al cargar los productos:", error);
         Swal.fire({
             title: 'Hubo un error al cargar los mangas',
             text: 'No pudimos cargar los mangas, por favor recargá la página.',
