@@ -67,6 +67,8 @@ const tipeoBuscador = () => {
 
 llamarProductos(datos);
 
+buscador.addEventListener("input", tipeoBuscador);
+
 async function buscarPorGenero(genero) {
     const respuesta = await fetch("datos.json");
     const datos = await respuesta.json();
