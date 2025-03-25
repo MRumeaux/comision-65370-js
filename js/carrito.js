@@ -1,9 +1,7 @@
-// Vista simple del carrito
 const verCarrito = document.getElementById("contenedor-carrito");
 const modalContenedor = document.getElementById("modal-contenedor");
 const cuentoCarrito = document.getElementById("contador-carrito");
 
-// Inicialización del carrito
 function copiarCarritoAlLocalStorage() {
     let backUpCarrito = JSON.stringify(carrito);
     localStorage.setItem("carrito", backUpCarrito);
@@ -11,9 +9,10 @@ function copiarCarritoAlLocalStorage() {
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// Funciones del carrito
-function sumarArticulosACarrito(idSeleccionArticulo) {
-    const articuloSeleccionado = inventario.find(articulo => articulo.id === idSeleccionArticulo);
+async function sumarArticulosACarrito(idSeleccionArticulo) {
+    const respuesta = await fetch("datos.json");
+    const datos = await respuesta.json();
+    const articuloSeleccionado = datos.find(articulo => articulo.id === idSeleccionArticulo);
     const articuloEnCarrito = carrito.some(articulo => articulo.id === idSeleccionArticulo);
 
     if (articuloSeleccionado && !articuloEnCarrito) {

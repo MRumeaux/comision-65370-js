@@ -1,5 +1,8 @@
 body{
     margin: 0px;
+    background-image: url(../assets/para-fondo-wall.jpg);
+    background-size: repeat;
+    background-position: center;
 }
 
 /* Componentes navbar */
@@ -35,15 +38,12 @@ body{
 /* Componentes banner*/
 
 .banner{
-    background-size: repeat;
-    background-position: center;
-    height: 100vh;
-    background-image: url(../assets/para-fondo-wall.jpg);
+    height: 40vh;;
 }
 
 .banner-contenedor{
     text-align: center;
-    padding: 15% 0;
+    padding: 5% 0;
 }
 
 .banner h1{
@@ -59,7 +59,7 @@ body{
     font-size: 30px;
     color: white;
     background-color: black;
-    opacity: 0.7;
+    opacity: 0.9;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -88,6 +88,7 @@ body{
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s;
+    animation: slideIn 0.5s ease-out;
 }
 
 .preview-articulo:hover {
@@ -145,6 +146,7 @@ body{
     z-index: 9;
     top: 12vh;
     scrollbar-color: none;
+    border-radius: 5px;
 }
 
 .modal-contenedor::-webkit-scrollbar{
@@ -214,17 +216,31 @@ body{
     display: none;
 }
 
-
-
-/* posible ver carrito */
-
-/*
-
-.ver-carrito{
-    font-size: 25px;
-    margin-right: 20px;
-    margin-top: 3.5vh;
-    cursor: pointer;
+/* Animaciones para el contenedor de productos */
+#contenido-tienda {
+    transition: opacity 0.3s ease-in-out;
 }
 
-*/
+#contenido-tienda.desaparecer {
+    opacity: 0;
+}
+
+#contenido-tienda.aparecer {
+    opacity: 1;
+}
+
+/* Animación para el mensaje de error */
+.error-message {
+    animation: aparecer 0.3s ease-in-out;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
