@@ -87,6 +87,10 @@ body{
     display: none;
 }
 
+.sin-resultados.mostrar {
+    display: block;
+}
+
 /* tarjetas productos */
 
 .contenidoTienda{
@@ -240,7 +244,7 @@ body{
     display: none;
 }
 
-/* Animaciones para el contenedor de productos */
+/* Animaciones contenido tienda */
 #contenido-tienda {
     transition: opacity 0.3s ease-in-out;
 }
@@ -253,7 +257,7 @@ body{
     opacity: 1;
 }
 
-/* Animación para el mensaje de error */
+/* Animación msj error */
 .error-message {
     animation: aparecer 0.3s ease-in-out;
 }
